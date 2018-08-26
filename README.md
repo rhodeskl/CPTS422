@@ -4,7 +4,9 @@ This is our work for our group project in CptS422, Software Engineering Principl
 
 ## Team Information
 Team Name: Shelled Pistachios
+
 Project Topic: Structural Metrics
+
 Team Members: 
 * Wai Fong
 * Shrunga Malavalli
