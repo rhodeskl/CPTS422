@@ -65,7 +65,7 @@ public class CommentCounter extends AbstractCheck {
 	
 	@Override
 	public void finishTree(DetailAST rootAST) {
-		for(int i = 0; i < beginBlockCommentLines.size(); i++) {
+		for(int i = 0; i < beginBlockCommentLines.size() && i < endBlockCommentLines.size(); i++) {
 			Integer lineNoBegin = beginBlockCommentLines.get(i);
 			Integer lineNoEnd = endBlockCommentLines.get(i);
 			Integer numLines = lineNoEnd - lineNoBegin + 1;
