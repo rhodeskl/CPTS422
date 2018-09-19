@@ -1,17 +1,28 @@
 package cpts422.structural_metrics;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class CommentCounter extends AbstractCheck {
 	private int numComments;
 	private int numCommentLines;
 	
-	public void countComments(String code) {
-		
+	public CommentCounter() {
+		this.numCommentLines = 0;
+		this.numComments = 0;
 	}
 	
-	public void countLines(String code) {
-		
+	public void countComments(DetailAST ast) {
+		DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
+		int numSingleComments = objBlock.getChildCount(TokenTypes.SINGLE_LINE_COMMENT);
+		int numBlockComments = objBlock.getChildCount(TokenTypes.BLOCK_COMMENT_BEGIN);
+		numComments = numSingleComments + numBlockComments;
+		log(ast, "Number of Comments = " + numComments);
+	}
+	
+	public void countLines(DetailAST ast) {
+		DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
 	}
 	
 	public int getNumComments() {
@@ -24,19 +35,22 @@ public class CommentCounter extends AbstractCheck {
 
 	@Override
 	public int[] getAcceptableTokens() {
-		// TODO Auto-generated method stub
-		return null;
+		return new int[] {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF };
 	}
 
 	@Override
 	public int[] getDefaultTokens() {
-		// TODO Auto-generated method stub
-		return null;
+		return new int[] { TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF };
 	}
 
 	@Override
 	public int[] getRequiredTokens() {
-		// TODO Auto-generated method stub
-		return null;
+		return new int[0];
+	}
+	
+	@Override
+	public void visitToken(DetailAST ast) {
+		countComments(ast);
+		countLines(ast);
 	}
 }
