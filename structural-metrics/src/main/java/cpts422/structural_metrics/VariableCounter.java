@@ -12,34 +12,40 @@ public class VariableCounter extends AbstractCheck {
 		this.numVariables = 0;
 	}
 	
-	public void countVariables(DetailAST ast) {
-		DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
-		numVariables = objBlock.getChildCount(TokenTypes.VARIABLE_DEF);
-		log(ast, "Number of Variables = " + numVariables);
-	}
-	
 	public int getNumVariables() {
 		return numVariables;
+	}
+	
+	@Override
+	public void beginTree(DetailAST rootAST) {
+		numVariables = 0;
 	}
 
 	@Override
 	public int[] getAcceptableTokens() {
-		return new int[] {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF };
+		return getDefaultTokens();
 	}
 
 	@Override
 	public int[] getDefaultTokens() {
-		return new int[] {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF };
+		return new int[] {TokenTypes.VARIABLE_DEF};
 	}
 
 	@Override
 	public int[] getRequiredTokens() {
-		return new int[0];
+		return getDefaultTokens();
 	}
 	
 	@Override
 	public void visitToken(DetailAST ast) {
-		countVariables(ast);
+		if(ast.getType() == TokenTypes.VARIABLE_DEF) {
+			numVariables++;
+		}
+	}
+	
+	@Override 
+	public void finishTree(DetailAST rootAST) {
+		log(rootAST, "Number of variables = " + numVariables);
 	}
 
 }
