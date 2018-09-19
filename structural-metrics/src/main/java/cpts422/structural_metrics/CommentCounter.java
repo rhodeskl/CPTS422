@@ -30,6 +30,8 @@ public class CommentCounter extends AbstractCheck {
 	public void beginTree(DetailAST rootAST) {
 		numComments = 0;
 		numCommentLines = 0;
+		this.beginBlockCommentLines = new ArrayList<Integer>();
+		this.endBlockCommentLines = new ArrayList<Integer>();
 	}
 
 	@Override
