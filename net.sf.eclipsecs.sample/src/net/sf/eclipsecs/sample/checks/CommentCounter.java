@@ -27,6 +27,11 @@ public class CommentCounter extends AbstractCheck {
 	}
 	
 	@Override
+	public boolean isCommentNodesRequired() {
+	  return true;
+	}
+	
+	@Override
 	public void beginTree(DetailAST rootAST) {
 		numComments = 0;
 		numCommentLines = 0;
@@ -71,7 +76,7 @@ public class CommentCounter extends AbstractCheck {
 			Integer numLines = lineNoEnd - lineNoBegin + 1;
 			numCommentLines = numLines + numCommentLines;
 		}
-		log(rootAST, "Number of comments = " + numComments);
-		log(rootAST, "Number of lines of comments = " + numCommentLines);
+		log(rootAST, "commentCounter", numComments);
+		log(rootAST, "commentLines", numCommentLines);
 	}
 }

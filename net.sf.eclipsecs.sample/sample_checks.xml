@@ -17,6 +17,7 @@
         </module>
         <module name="CommentCounter">
         	<message key="commentCounter" value="Number of comments: {0}" />
+        	<message key="commentLines" value="Number of comment lines: {0}" />
         </module>
         <module name="VariableCounter">
         	<message key="variableCounter" value="Number of variables: {0}" />

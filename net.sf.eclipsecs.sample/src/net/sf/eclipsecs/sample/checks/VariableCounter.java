@@ -45,7 +45,7 @@ public class VariableCounter extends AbstractCheck {
 	
 	@Override 
 	public void finishTree(DetailAST rootAST) {
-		log(rootAST, "Number of variables = " + numVariables);
+		log(rootAST, "variableCounter", numVariables);
 	}
 
 }
