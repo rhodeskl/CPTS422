@@ -14,5 +14,13 @@
             </property-metadata>
             <quickfix classname="net.sf.eclipsecs.sample.checks.MethodLimitQuickfix" />
         </rule-metadata>
+        <rule-metadata name="%CommentCounter.name" internal-name="CommentCounter" parent="TreeWalker">
+        	<alternative-name internal-name="net.sf.eclipsecs.sample.checks.CommentCounter" />
+        	<description>%CommentCounter.desc</description>
+        </rule-metadata>
+        <rule-metadata name="%VariableCounter.name" internal-name="VariableCounter" parent="TreeWalker">
+        	<alternative-name internal-name="net.sf.eclipsecs.sample.checks.VariableCounter" />
+        	<description>%VariableCounter.desc</description>
+        </rule-metadata>
     </rule-group-metadata>
 </checkstyle-metadata>

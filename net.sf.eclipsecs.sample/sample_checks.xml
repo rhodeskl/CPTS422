@@ -15,6 +15,12 @@
             <property name="max" value="1" />
             <message key="methodlimit" value="Man, only {0} methods allowed." />
         </module>
+        <module name="CommentCounter">
+        	<message key="commentCounter" value="Number of comments: {0}" />
+        </module>
+        <module name="VariableCounter">
+        	<message key="variableCounter" value="Number of variables: {0}" />
+        </module>
         
         <!-- <module name="LineLength"> <property name="max" value="${maxLineLength}"/> </module> -->
 
