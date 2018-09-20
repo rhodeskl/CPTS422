@@ -1,4 +1,4 @@
-package cpts422.structural_metrics;
+package net.sf.eclipsecs.sample.checks;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
