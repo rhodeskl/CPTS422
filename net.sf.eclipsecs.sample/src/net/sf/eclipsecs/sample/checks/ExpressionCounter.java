@@ -4,12 +4,13 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 
 public class ExpressionCounter extends AbstractCheck {
 	
-	private int numExpressions;
-	private int numOperators;
-	private int numOperands;
+  private int numExpressions;
+  private int numOperators;
+  private int numOperands;
+  private int numUniqueOperators;
+  private int numUniqueOperands;
 
-	//TODO need a method to get UNIQUE operators and UNIQUE operands
-	
+ 
 	public void countExpressions(String code) {
 		
 	}
@@ -20,6 +21,14 @@ public class ExpressionCounter extends AbstractCheck {
 	
 	public void countOperators(String code) {
 		
+	}
+	
+	public void countUniqueOperands(String code) {
+	  
+	}
+	
+	public void countUniqueOperators(String code) {
+	  
 	}
 	
 	public int getNumExpressions() {
@@ -33,7 +42,15 @@ public class ExpressionCounter extends AbstractCheck {
 	public int getNumOperands() {
 		return numOperands;
 	}
+	
+	public int getNumUniqueOperators() {
+	  return numUniqueOperators;
+	}
 
+	public int getNumUniqueOperands() {
+	  return numUniqueOperands;
+	}
+	
 	@Override
 	public int[] getAcceptableTokens() {
 		// TODO Auto-generated method stub
