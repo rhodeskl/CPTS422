@@ -7,6 +7,8 @@ public class ExpressionCounter extends AbstractCheck {
 	private int numExpressions;
 	private int numOperators;
 	private int numOperands;
+
+	//TODO need a method to get UNIQUE operators and UNIQUE operands
 	
 	public void countExpressions(String code) {
 		

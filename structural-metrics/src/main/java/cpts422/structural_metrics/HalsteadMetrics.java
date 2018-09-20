@@ -4,18 +4,17 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 
 public class HalsteadMetrics extends AbstractCheck {
 	
-	private int hLength;
 	private int hVocab;
 	private int hVolume;
 	private int hDifficulty;
 	private int hEffort;
 	
-	public void getHalsteadLength(ExpressionCounter expressionCounter) {
-		
+	public int getHalsteadLength(ExpressionCounter expressionCounter) {
+		int hLength = expressionCounter.getNumOperators() + expressionCounter.getNumOperands();
+		return hLength;
 	}
 	
 	public void getHalsteadVocab(ExpressionCounter expressionCounter) {
-		
 	}
 	
 	public void getHalsteadVolume() {
