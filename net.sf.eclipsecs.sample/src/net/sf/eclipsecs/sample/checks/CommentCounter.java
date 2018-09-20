@@ -8,14 +8,10 @@ import java.util.ArrayList;
 public class CommentCounter extends AbstractCheck {
 	private int numComments;
 	private int numCommentLines;
-	private ArrayList<Integer> beginBlockCommentLines;
-	private ArrayList<Integer> endBlockCommentLines;
 	
 	public CommentCounter() {
 		this.numCommentLines = 0;
 		this.numComments = 0;
-		this.beginBlockCommentLines = new ArrayList<Integer>();
-		this.endBlockCommentLines = new ArrayList<Integer>();
 	}
 	
 	public int getNumComments() {
@@ -35,8 +31,6 @@ public class CommentCounter extends AbstractCheck {
 	public void beginTree(DetailAST rootAST) {
 		numComments = 0;
 		numCommentLines = 0;
-		this.beginBlockCommentLines = new ArrayList<Integer>();
-		this.endBlockCommentLines = new ArrayList<Integer>();
 	}
 
 	@Override
@@ -46,7 +40,7 @@ public class CommentCounter extends AbstractCheck {
 
 	@Override
 	public int[] getDefaultTokens() {
-		return new int[] { TokenTypes.BLOCK_COMMENT_BEGIN, TokenTypes.BLOCK_COMMENT_END, TokenTypes.SINGLE_LINE_COMMENT };
+		return new int[] { TokenTypes.BLOCK_COMMENT_BEGIN, TokenTypes.SINGLE_LINE_COMMENT };
 	}
 
 	@Override
@@ -58,24 +52,21 @@ public class CommentCounter extends AbstractCheck {
 	public void visitToken(DetailAST ast) {
 		switch (ast.getType()) {
 		case TokenTypes.BLOCK_COMMENT_BEGIN:
-			numComments++;
-			beginBlockCommentLines.add(ast.getLineNo());
-		case TokenTypes.BLOCK_COMMENT_END:
-			endBlockCommentLines.add(ast.getLineNo());
+		  int lineNoStart = ast.getLineNo();
+			DetailAST astTemp = ast.findFirstToken(TokenTypes.BLOCK_COMMENT_END);
+			if(astTemp != null) {
+			  int lineNoEnd = astTemp.getLineNo();
+			  int numLines = lineNoEnd - lineNoStart;
+			  numCommentLines = numCommentLines + numLines;
+			}
 		case TokenTypes.SINGLE_LINE_COMMENT:
-			numComments++;
+		  numComments++;
 			numCommentLines++;
 		}
 	}
 	
 	@Override
 	public void finishTree(DetailAST rootAST) {
-		for(int i = 0; i < beginBlockCommentLines.size() && i < endBlockCommentLines.size(); i++) {
-			Integer lineNoBegin = beginBlockCommentLines.get(i);
-			Integer lineNoEnd = endBlockCommentLines.get(i);
-			Integer numLines = lineNoEnd - lineNoBegin + 1;
-			numCommentLines = numLines + numCommentLines;
-		}
 		log(rootAST, "commentCounter", numComments);
 		log(rootAST, "commentLines", numCommentLines);
 	}
