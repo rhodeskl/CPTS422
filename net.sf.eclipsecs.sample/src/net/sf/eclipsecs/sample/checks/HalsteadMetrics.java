@@ -1,32 +1,65 @@
 package net.sf.eclipsecs.sample.checks;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
-public class HalsteadMetrics extends AbstractCheck {
+public class HalsteadMetrics extends AbstractCheck{
 	
+  private int hLength;
 	private int hVocab;
-	private int hVolume;
-	private int hDifficulty;
-	private int hEffort;
+	private double hVolume;
+	private double hDifficulty;
+	private double hEffort;
 	
-	public int getHalsteadLength(ExpressionCounter expressionCounter) {
-		int hLength = expressionCounter.getNumOperators() + expressionCounter.getNumOperands();
-		return hLength;
+	public void SetAllHalstead() {
+	  SetHalsteadLength();
+	  SetHalsteadVocab();
+	  SetHalsteadVolume();
+	  SetHalsteadDifficulty();
+	  SetHalsteadEffort();
 	}
 	
-	public void getHalsteadVocab(ExpressionCounter expressionCounter) {
+	public int GetHalsteadLength() {
+	  return hLength;
+	}
+
+  public int GetHalsteadVocab() {
+    return hVocab;
+  }
+  
+  public double GetHalsteadVolume() {
+    return hVolume;
+  }
+
+  public double GetHalsteadDifficulty() {
+    return hDifficulty;
+  }
+
+  public double GetHalsteadEffort() {
+    return hEffort;
+  }
+	public void SetHalsteadLength() {
+	  ExpressionCounter expressionCounter = new ExpressionCounter();
+		hLength = expressionCounter.getNumOperators() + expressionCounter.getNumOperands();
 	}
 	
-	public void getHalsteadVolume() {
-		
+	public void SetHalsteadVocab() {
+    ExpressionCounter expressionCounter = new ExpressionCounter();
+	  //hVocab = expressionCounter.getUniqueOperators() + expressionCounter.getUniqueOperands();
 	}
 	
-	public void getHalsteadDifficulty() {
-		
+	public void SetHalsteadVolume() {
+		hVolume = hLength * (Math.log(hVocab)/Math.log(2));
 	}
 	
-	public void getHalsteadEffort() {
-		
+	public void SetHalsteadDifficulty() {
+    ExpressionCounter expressionCounter = new ExpressionCounter();
+		//hDifficulty = ((expressionCounter.getUniqueOperators()/2) * expressionCounter.getNumOperands())
+    //              /expressionCounter.getUniqueOperands();
+	}
+	
+	public void SetHalsteadEffort() {
+		hEffort = hDifficulty * hVolume;
 	}
 
 	@Override
@@ -46,5 +79,14 @@ public class HalsteadMetrics extends AbstractCheck {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	@Override
+  public void finishTree(DetailAST rootAST) {
+	  SetAllHalstead();
+    log(rootAST, "Halstead Length", GetHalsteadLength());
+    log(rootAST, "Halstead Vocab", GetHalsteadVocab());
+    log(rootAST, "Halstead Volume", GetHalsteadVolume());
+    log(rootAST, "Halstead Difficulty", GetHalsteadDifficulty());
+    log(rootAST, "Halstead Effort", GetHalsteadEffort());
+  }
 }
