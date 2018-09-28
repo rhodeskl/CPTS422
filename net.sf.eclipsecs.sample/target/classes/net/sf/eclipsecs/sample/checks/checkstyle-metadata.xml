@@ -14,13 +14,26 @@
             </property-metadata>
             <quickfix classname="net.sf.eclipsecs.sample.checks.MethodLimitQuickfix" />
         </rule-metadata>
+        
+        <rule-metadata name="%HalsteadMetrics.name" internal-name="HalsteadMetrics" parent="TreeWalker">
+        	<alternative-name internal-name="net.sf.eclipsecs.sample.checks.HalsteadMetrics" />
+        	<description>%HalsteadMetrics.desc</description>
+        </rule-metadata>
+        
+        <rule-metadata name="%MaintainabilityIndex.name" internal-name="MaintainabilityIndex" parent="TreeWalker">
+        	<alternative-name internal-name="net.sf.eclipsecs.sample.checks.MaintainabilityIndex" />
+        	<description>%MaintainabilityIndex.desc</description>
+        </rule-metadata>
+        	
         <rule-metadata name="%CommentCounter.name" internal-name="CommentCounter" parent="TreeWalker">
         	<alternative-name internal-name="net.sf.eclipsecs.sample.checks.CommentCounter" />
         	<description>%CommentCounter.desc</description>
         </rule-metadata>
+        
         <rule-metadata name="%VariableCounter.name" internal-name="VariableCounter" parent="TreeWalker">
         	<alternative-name internal-name="net.sf.eclipsecs.sample.checks.VariableCounter" />
         	<description>%VariableCounter.desc</description>
         </rule-metadata>
+        
     </rule-group-metadata>
 </checkstyle-metadata>
