@@ -14,5 +14,7 @@
     <module name="MethodLimit">
       <property name="max" value="2"/>
     </module>
+    <module name="CommentCounter"/>
+    <module name="HalsteadMetrics"/>
   </module>
 </module>

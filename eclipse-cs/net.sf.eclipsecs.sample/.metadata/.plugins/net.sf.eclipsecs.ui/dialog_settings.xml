@@ -58,6 +58,10 @@
 		<item value="113" key="colWidth0"/>
 		<item value="85" key="colWidth1"/>
 	</section>
+	<section name="net.sf.eclipsecs.ui.config.RuleConfigurationEditDialog#CommentCounter">
+		<item value="false" key="maximized"/>
+		<item value="false" key="minimized"/>
+	</section>
 	<section name="net.sf.eclipsecs.ui.config.RuleConfigurationEditDialog#MethodLimit">
 		<item value="false" key="maximized"/>
 		<item value="false" key="minimized"/>
@@ -81,5 +85,13 @@
 	<section name="net.sf.eclipsecs.ui.config.RuleConfigurationEditDialog#InnerTypeLast">
 		<item value="false" key="maximized"/>
 		<item value="false" key="minimized"/>
+	</section>
+	<section name="net.sf.eclipsecs.ui.config.RuleConfigurationEditDialog#HalsteadMetrics">
+		<item value="false" key="maximized"/>
+		<item value="574" key="width"/>
+		<item value="513" key="x"/>
+		<item value="157" key="y"/>
+		<item value="false" key="minimized"/>
+		<item value="281" key="height"/>
 	</section>
 </section>

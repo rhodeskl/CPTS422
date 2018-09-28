@@ -45,6 +45,9 @@ public class HalsteadMetrics extends AbstractCheck{
 		
 		CommentCounter commentCounter = new CommentCounter();
 		temp = commentCounter.getNumComments();
+		
+	  hLength = 0;
+	  temp = 0;
 	}
 	
 	public void SetHalsteadVocab() {
@@ -88,12 +91,11 @@ public class HalsteadMetrics extends AbstractCheck{
 	
 	@Override
   public void finishTree(DetailAST rootAST) {
-	  SetAllHalstead();
-    log(rootAST, "Halstead Length", GetHalsteadLength());
-    log(rootAST, "Halstead Vocab", GetHalsteadVocab());
-    log(rootAST, "Halstead Volume", GetHalsteadVolume());
-    log(rootAST, "Halstead Difficulty", GetHalsteadDifficulty());
-    log(rootAST, "Halstead Effort", GetHalsteadEffort());
+    log(rootAST, "Halstead Length", hLength);
+    log(rootAST, "Halstead Vocab", hVocab);
+    log(rootAST, "Halstead Volume", hVolume);
+    log(rootAST, "Halstead Difficulty", hDifficulty);
+    log(rootAST, "Halstead Effort", hEffort);
     log(rootAST, "Testing New Instance", temp);
   }
 }
