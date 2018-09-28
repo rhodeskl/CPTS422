@@ -94,5 +94,6 @@ public class HalsteadMetrics extends AbstractCheck{
     log(rootAST, "Halstead Volume", GetHalsteadVolume());
     log(rootAST, "Halstead Difficulty", GetHalsteadDifficulty());
     log(rootAST, "Halstead Effort", GetHalsteadEffort());
+    log(rootAST, "Testing New Instance", temp);
   }
 }
