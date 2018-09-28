@@ -49,7 +49,7 @@ public class HalsteadMetrics extends AbstractCheck{
 	
 	public void SetHalsteadVocab() {
     ExpressionCounter expressionCounter = new ExpressionCounter();
-	  //hVocab = expressionCounter.getUniqueOperators() + expressionCounter.getUniqueOperands();
+	  hVocab = expressionCounter.getNumUniqueOperators() + expressionCounter.getNumUniqueOperands();
     hVocab = 0;
 	}
 	
@@ -59,8 +59,8 @@ public class HalsteadMetrics extends AbstractCheck{
 	
 	public void SetHalsteadDifficulty() {
     ExpressionCounter expressionCounter = new ExpressionCounter();
-		//hDifficulty = ((expressionCounter.getUniqueOperators()/2) * expressionCounter.getNumOperands())
-    //              /expressionCounter.getUniqueOperands();
+		hDifficulty = ((expressionCounter.getNumUniqueOperators()/2) * expressionCounter.getNumOperands())
+                  /expressionCounter.getNumUniqueOperands();
     hDifficulty = 0;
 	}
 	
