@@ -10,6 +10,7 @@ public class HalsteadMetrics extends AbstractCheck{
 	private double hVolume;
 	private double hDifficulty;
 	private double hEffort;
+	private int temp;
 	
 	public void SetAllHalstead() {
 	  SetHalsteadLength();
@@ -41,11 +42,15 @@ public class HalsteadMetrics extends AbstractCheck{
 	public void SetHalsteadLength() {
 	  ExpressionCounter expressionCounter = new ExpressionCounter();
 		hLength = expressionCounter.getNumOperators() + expressionCounter.getNumOperands();
+		
+		CommentCounter commentCounter = new CommentCounter();
+		temp = commentCounter.getNumComments();
 	}
 	
 	public void SetHalsteadVocab() {
     ExpressionCounter expressionCounter = new ExpressionCounter();
 	  //hVocab = expressionCounter.getUniqueOperators() + expressionCounter.getUniqueOperands();
+    hVocab = 0;
 	}
 	
 	public void SetHalsteadVolume() {
@@ -56,6 +61,7 @@ public class HalsteadMetrics extends AbstractCheck{
     ExpressionCounter expressionCounter = new ExpressionCounter();
 		//hDifficulty = ((expressionCounter.getUniqueOperators()/2) * expressionCounter.getNumOperands())
     //              /expressionCounter.getUniqueOperands();
+    hDifficulty = 0;
 	}
 	
 	public void SetHalsteadEffort() {
