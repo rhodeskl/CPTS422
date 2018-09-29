@@ -24,7 +24,7 @@ public class MaintainabilityIndex extends AbstractCheck{
     double v = halstead_metrics.getHalsteadVolume();
     int g = cyclomatic_complexity.getCurrentValue();
     int loc = executable_counter.getNumLines();
-    double cm = comment_counter.getCommentLines()/(comment_counter.getCommentLines()+loc);
+    double cm = comment_counter.getNumComments()/(comment_counter.getNumComments()+loc);
     
     
     maintainability = 171 - 
