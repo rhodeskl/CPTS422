@@ -4,5 +4,4 @@ public class TestJ {
 	void m2() {}
 	void m3() {}
 	//Hello world.
-	//hello me
 }

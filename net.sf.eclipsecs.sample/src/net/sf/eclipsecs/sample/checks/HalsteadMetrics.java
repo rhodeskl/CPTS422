@@ -10,7 +10,7 @@ public class HalsteadMetrics extends AbstractCheck{
 	private double hVolume;
 	private double hDifficulty;
 	private double hEffort;
-	private int temp;
+	private ExpressionCounter expression_counter;
 	
 	public HalsteadMetrics()
 	{
@@ -19,7 +19,7 @@ public class HalsteadMetrics extends AbstractCheck{
 	  this.hVolume = 0;
 	  this.hDifficulty = 0;
 	  this.hEffort = 0;
-	  this.temp = 0;
+	  this.expression_counter = new ExpressionCounter();
 	}
 	
 	public void setAllHalstead() {
@@ -50,20 +50,11 @@ public class HalsteadMetrics extends AbstractCheck{
     return hEffort;
   }
 	public void setHalsteadLength() {
-	  /*
-	  ExpressionCounter expressionCounter = new ExpressionCounter();
-		hLength = expressionCounter.getNumOperators() + expressionCounter.getNumOperands();
-		
-		CommentCounter commentCounter = new CommentCounter();
-		temp = commentCounter.getNumComments();
-		*/
+		hLength = expression_counter.getNumOperators() + expression_counter.getNumOperands();
 	}
 	
 	public void setHalsteadVocab() {
-	  /*
-    ExpressionCounter expressionCounter = new ExpressionCounter();
-	  hVocab = expressionCounter.getNumUniqueOperators() + expressionCounter.getNumUniqueOperands();
-	  */
+	  hVocab = expression_counter.getNumUniqueOperators() + expression_counter.getNumUniqueOperands();
 	}
 	
 	public void setHalsteadVolume() {
@@ -71,43 +62,41 @@ public class HalsteadMetrics extends AbstractCheck{
 	}
 	
 	public void setHalsteadDifficulty() {
-	  /*
-    ExpressionCounter expressionCounter = new ExpressionCounter();
-		hDifficulty = ((expressionCounter.getNumUniqueOperators()/2) * expressionCounter.getNumOperands())
-                  /expressionCounter.getNumUniqueOperands();
-                   * 
-                   */
+		hDifficulty = ((expression_counter.getNumUniqueOperators()/2) * expression_counter.getNumOperands())
+		        /expression_counter.getNumUniqueOperands();
 	}
 	
 	public void setHalsteadEffort() {
 		hEffort = hDifficulty * hVolume;
 	}
-
+	
 	@Override
-	public int[] getAcceptableTokens() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-  @Override
-  public int[] getRequiredTokens() {
-    // TODO Auto-generated method stub
-    return null;
+  public int[] getDefaultTokens() {
+    return expression_counter.getDefaultTokens();
   }
   
-	@Override
-	public int[] getDefaultTokens() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+  @Override
+  public int[] getAcceptableTokens() {
+    return expression_counter.getAcceptableTokens();
+  }
+  
+  @Override
+  public final int[] getRequiredTokens() {
+    return expression_counter.getRequiredTokens();
+  }
+  
+  @Override
+  public void visitToken(DetailAST ast) {
+    expression_counter.visitToken(ast);
+  }
 	
 	@Override
   public void finishTree(DetailAST rootAST) {
+	  setAllHalstead();
     log(rootAST, "hLength", hLength);
     log(rootAST, "hVocab", hVocab);
     log(rootAST, "hVolume", hVolume);
-    log(rootAST, "hdifficulty", hDifficulty);
+    log(rootAST, "hDifficulty", hDifficulty);
     log(rootAST, "hEffort", hEffort);
-    log(rootAST, "temp", temp);
   }
 }

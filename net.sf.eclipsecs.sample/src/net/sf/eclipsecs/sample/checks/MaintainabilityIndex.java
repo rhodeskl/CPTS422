@@ -3,24 +3,28 @@ package net.sf.eclipsecs.sample.checks;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
-public class MaintainabilityIndex extends AbstractCheck {
+public class MaintainabilityIndex extends AbstractCheck{
   
   private double maintainability;
+  private HalsteadMetrics halstead_metrics;
+  private CyclomaticComplexity cyclomatic_complexity;
+  private ExecutableStatementCount executable_counter;
+  private CommentCounter comment_counter;
   
   public MaintainabilityIndex()
   {
     this.maintainability = 0;
+    this.halstead_metrics = new HalsteadMetrics();
+    this.cyclomatic_complexity = new CyclomaticComplexity();
+    this.executable_counter = new ExecutableStatementCount();
+    this.comment_counter = new CommentCounter();
   }
   
   public void setMaintainabilityIndex() {
-    HalsteadMetrics halstead_metrics = new HalsteadMetrics();
-    
-    halstead_metrics.setHalsteadVolume();
-    
     double v = halstead_metrics.getHalsteadVolume();
-    int g = 0; //Cyclomatic Complexity
-    double loc = 0; //Lines of Code
-    double cm = 0; //Percent of lines of Comment
+    int g = cyclomatic_complexity.getCurrentValue();
+    int loc = executable_counter.getNumLines();
+    double cm = comment_counter.getCommentLines()/(comment_counter.getCommentLines()+loc);
     
     
     maintainability = 171 - 
@@ -33,27 +37,69 @@ public class MaintainabilityIndex extends AbstractCheck {
   public double getMaintainabilityIndex() {
     return maintainability;
   }
-
-  @Override
-  public int[] getAcceptableTokens() {
-    // TODO Auto-generated method stub
-    return null;
+  
+  private int[] merge(int[] arr1, int[] arr2)
+  {
+    int[] merged_arr = new int[arr1.length + arr2.length];
+    int i = 0;
+    for (int n : arr1) merged_arr[i++] = n;
+    for (int n : arr2) merged_arr[i++] = n;
+    
+    return merged_arr;
   }
-
+  
   @Override
   public int[] getDefaultTokens() {
-    // TODO Auto-generated method stub
-    return null;
+    return merge(merge(merge(halstead_metrics.getDefaultTokens(),
+            cyclomatic_complexity.getDefaultTokens()),
+            executable_counter.getDefaultTokens()),
+            comment_counter.getDefaultTokens());
+  }
+  
+  @Override
+  public int[] getAcceptableTokens() {
+    return merge(merge(merge(halstead_metrics.getAcceptableTokens(),
+            cyclomatic_complexity.getAcceptableTokens()),
+            executable_counter.getAcceptableTokens()),
+            comment_counter.getAcceptableTokens());
+  }
+  
+  @Override
+  public final int[] getRequiredTokens() {
+    return merge(merge(merge(halstead_metrics.getRequiredTokens(),
+            cyclomatic_complexity.getRequiredTokens()),
+            executable_counter.getRequiredTokens()),
+            comment_counter.getRequiredTokens());
+  }
+  
+  @Override
+  public boolean isCommentNodesRequired() {
+    return comment_counter.isCommentNodesRequired();
   }
 
   @Override
-  public int[] getRequiredTokens() {
-    // TODO Auto-generated method stub
-    return null;
+  public void beginTree(DetailAST rootAST) {
+    executable_counter.beginTree(rootAST);
+    comment_counter.beginTree(rootAST);
+  }
+  
+  @Override
+  public void visitToken(DetailAST ast) {
+    halstead_metrics.visitToken(ast);
+    cyclomatic_complexity.visitToken(ast);
+    executable_counter.visitToken(ast);
+    comment_counter.visitToken(ast);
+  }
+  
+  @Override
+  public void leaveToken(DetailAST ast) {
+    cyclomatic_complexity.leaveToken(ast);
+    executable_counter.leaveToken(ast);
   }
   
   @Override
   public void finishTree(DetailAST rootAST) {
+    setMaintainabilityIndex();
     log(rootAST, "maintainability", maintainability);
   }
 }

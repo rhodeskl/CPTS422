@@ -21,7 +21,6 @@
         	<message key="hVolume" value="Halstead Volume: {0}" />
         	<message key="hDifficulty" value="Halstead Difficulty: {0}" />
         	<message key="hEffort" value="Halstead Effort: {0}" />
-        	<message key="temp" value="Testing: {0}" />
         </module>
         
         <module name="MaintainabilityIndex">

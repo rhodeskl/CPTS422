@@ -40,8 +40,8 @@
 		<item value="0" key="sortColumn"/>
 		<item value="1" key="sortDirection"/>
 		<item value="726" key="width"/>
-		<item value="-1164" key="x"/>
-		<item value="82" key="y"/>
+		<item value="-1117" key="x"/>
+		<item value="55" key="y"/>
 		<item value="-1" key="selectedRow"/>
 		<item value="688" key="height"/>
 	</section>
@@ -86,6 +86,10 @@
 		<item value="false" key="maximized"/>
 		<item value="false" key="minimized"/>
 	</section>
+	<section name="net.sf.eclipsecs.ui.config.RuleConfigurationEditDialog#MaintainabilityIndex">
+		<item value="false" key="maximized"/>
+		<item value="false" key="minimized"/>
+	</section>
 	<section name="net.sf.eclipsecs.ui.config.RuleConfigurationEditDialog#InnerTypeLast">
 		<item value="false" key="maximized"/>
 		<item value="false" key="minimized"/>
@@ -93,8 +97,8 @@
 	<section name="net.sf.eclipsecs.ui.config.RuleConfigurationEditDialog#HalsteadMetrics">
 		<item value="false" key="maximized"/>
 		<item value="574" key="width"/>
-		<item value="513" key="x"/>
-		<item value="157" key="y"/>
+		<item value="-1015" key="x"/>
+		<item value="240" key="y"/>
 		<item value="false" key="minimized"/>
 		<item value="281" key="height"/>
 	</section>
