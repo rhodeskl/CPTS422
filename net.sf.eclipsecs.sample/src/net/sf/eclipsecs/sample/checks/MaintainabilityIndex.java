@@ -7,12 +7,17 @@ public class MaintainabilityIndex extends AbstractCheck {
   
   private double maintainability;
   
-  public void SetMaintainabilityIndex() {
+  public MaintainabilityIndex()
+  {
+    this.maintainability = 0;
+  }
+  
+  public void setMaintainabilityIndex() {
     HalsteadMetrics halstead_metrics = new HalsteadMetrics();
     
-    halstead_metrics.SetHalsteadVolume();
+    halstead_metrics.setHalsteadVolume();
     
-    double v = halstead_metrics.GetHalsteadVolume();
+    double v = halstead_metrics.getHalsteadVolume();
     int g = 0; //Cyclomatic Complexity
     double loc = 0; //Lines of Code
     double cm = 0; //Percent of lines of Comment
@@ -25,7 +30,7 @@ public class MaintainabilityIndex extends AbstractCheck {
              (50 * Math.sin(Math.sqrt(2.4 * cm)));
   }
   
-  public double GetMaintainabilityIndex() {
+  public double getMaintainabilityIndex() {
     return maintainability;
   }
 
@@ -49,7 +54,7 @@ public class MaintainabilityIndex extends AbstractCheck {
   
   @Override
   public void finishTree(DetailAST rootAST) {
-    log(rootAST, "Maintainability Index", GetMaintainabilityIndex());
+    log(rootAST, "maintainability", maintainability);
   }
 }
 

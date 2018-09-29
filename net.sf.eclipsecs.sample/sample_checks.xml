@@ -10,7 +10,6 @@
     </module>
 
     <module name="TreeWalker">
-
         <module name="MethodLimit">
             <property name="max" value="1" />
             <message key="methodlimit" value="Man, only {0} methods allowed." />
