@@ -1,13 +1,15 @@
 package net.sf.eclipsecs.sample.checks;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class CastCounter extends AbstractCheck {
 	
 	private int numCasts;
 	
-	public void countCasts(String code) {
-		
+	public CastCounter() {
+	  this.numCasts = 0;
 	}
 	
 	public int getNumCasts() {
@@ -15,21 +17,35 @@ public class CastCounter extends AbstractCheck {
 	}
 
 	@Override
+	public void beginTree(DetailAST rootAST) {
+	  numCasts = 0;
+	}
+	
+	@Override
 	public int[] getAcceptableTokens() {
-		// TODO Auto-generated method stub
-		return null;
+	  return getDefaultTokens();
 	}
 
 	@Override
 	public int[] getDefaultTokens() {
-		// TODO Auto-generated method stub
-		return null;
+		return new int[] {TokenTypes.TYPECAST};
 	}
 
 	@Override
 	public int[] getRequiredTokens() {
-		// TODO Auto-generated method stub
-		return null;
+		return getDefaultTokens();
 	}
 
+	@Override
+	public void visitToken(DetailAST ast) {
+	  if(ast.getType() == TokenTypes.TYPECAST) {
+	    numCasts++;
+	  }
+	}
+	
+	@Override 
+	public void finishTree(DetailAST rootAST) {
+	  log(rootAST, "castCounter", numCasts);
+	}
+	
 }
