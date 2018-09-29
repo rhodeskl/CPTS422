@@ -9,7 +9,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ExecutableStatementCount extends AbstractCheck{
-  public static final String MSG_KEY = "executableStatementCount";
   private final Deque<Context> contextStack = new ArrayDeque<>();
   private Context context;
   

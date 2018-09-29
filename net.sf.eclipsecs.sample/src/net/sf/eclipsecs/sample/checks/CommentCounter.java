@@ -18,7 +18,7 @@ public class CommentCounter extends AbstractCheck {
 		return numComments;
 	}
 	
-	public int getCommentLines() {
+	public int getNumLines() {
 		return numCommentLines;
 	}
 	

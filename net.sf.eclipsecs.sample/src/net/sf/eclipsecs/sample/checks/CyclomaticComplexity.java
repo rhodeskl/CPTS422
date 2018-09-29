@@ -10,13 +10,10 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class CyclomaticComplexity extends AbstractCheck{
-  public static final String MSG_KEY = "cyclomaticComplexity";
   private static final BigInteger INITIAL_VALUE = BigInteger.ONE;
-  private static final int DEFAULT_COMPLEXITY_VALUE = 10;
   private final Deque<BigInteger> valueStack = new ArrayDeque<>();
   private boolean switchBlockAsSingleDecisionPoint;
   private BigInteger currentValue = INITIAL_VALUE;
-  private int max = DEFAULT_COMPLEXITY_VALUE;
   
   public void setSwitchBlockAsSingleDecisionPoint(boolean switchBlockAsSingleDecisionPoint) {
     this.switchBlockAsSingleDecisionPoint = switchBlockAsSingleDecisionPoint;
