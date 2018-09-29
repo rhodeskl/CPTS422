@@ -34,6 +34,9 @@
         <module name="VariableCounter">
         	<message key="variableCounter" value="Number of variables: {0}" />
         </module>
+        <module name="LoopingStatementCounter">
+        	<message key="loopingCounter" value="Number of looping statements: {0}" />
+        </module>
         
         <!-- <module name="LineLength"> <property name="max" value="${maxLineLength}"/> </module> -->
 
