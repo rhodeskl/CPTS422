@@ -40,19 +40,22 @@ public class HalsteadMetrics extends AbstractCheck{
     return hEffort;
   }
 	public void SetHalsteadLength() {
+	  /*
 	  ExpressionCounter expressionCounter = new ExpressionCounter();
 		hLength = expressionCounter.getNumOperators() + expressionCounter.getNumOperands();
 		
 		CommentCounter commentCounter = new CommentCounter();
 		temp = commentCounter.getNumComments();
-		
+		*/
 	  hLength = 0;
 	  temp = 0;
 	}
 	
 	public void SetHalsteadVocab() {
+	  /*
     ExpressionCounter expressionCounter = new ExpressionCounter();
 	  hVocab = expressionCounter.getNumUniqueOperators() + expressionCounter.getNumUniqueOperands();
+	  */
     hVocab = 0;
 	}
 	
@@ -61,9 +64,12 @@ public class HalsteadMetrics extends AbstractCheck{
 	}
 	
 	public void SetHalsteadDifficulty() {
+	  /*
     ExpressionCounter expressionCounter = new ExpressionCounter();
 		hDifficulty = ((expressionCounter.getNumUniqueOperators()/2) * expressionCounter.getNumOperands())
                   /expressionCounter.getNumUniqueOperands();
+                   * 
+                   */
     hDifficulty = 0;
 	}
 	
