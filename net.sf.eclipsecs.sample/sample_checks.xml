@@ -41,6 +41,14 @@
         	<message key="castCounter" value="Number of cast statements: {0}" />
         </module>
         
+        <module name="expressionCounter">
+        	<message key="expressionCounter" value="Number of expressions: {0}" />
+        	<message key="numberOperators" value="Number of operators: {0}" />
+        	<message key="numberOperands" value="Number of operands: {0}" />
+        	<message key="numberUniqueOperators" value="Number of unique operators: {0}" />
+        	<message key="numberUniqueOperands" value="Number of unique operands: {0}" />
+        </module>
+        
         <!-- <module name="LineLength"> <property name="max" value="${maxLineLength}"/> </module> -->
 
         <module name="Regexp">
