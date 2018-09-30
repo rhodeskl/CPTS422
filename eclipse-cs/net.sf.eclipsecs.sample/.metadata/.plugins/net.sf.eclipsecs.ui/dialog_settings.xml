@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<section name="net.sf.eclipsecs.ui.config.RuleConfigurationEditDialog#CastCounter">
+		<item value="false" key="maximized"/>
+		<item value="881" key="width"/>
+		<item value="549" key="x"/>
+		<item value="139" key="y"/>
+		<item value="false" key="minimized"/>
+		<item value="469" key="height"/>
+	</section>
 	<section name="net.sf.eclipsecs.ui.config.RuleConfigurationEditDialog#HideUtilityClassConstructor">
 		<item value="false" key="maximized"/>
 		<item value="false" key="minimized"/>
@@ -19,6 +27,10 @@
 	<section name="net.sf.eclipsecs.ui.stats.views.GraphStatsView">
 		<section name="detailView">
 		</section>
+	</section>
+	<section name="net.sf.eclipsecs.ui.config.RuleConfigurationEditDialog#MethodCounter">
+		<item value="false" key="maximized"/>
+		<item value="false" key="minimized"/>
 	</section>
 	<section name="net.sf.eclipsecs.ui.config.RuleConfigurationEditDialog#FinalClass">
 		<item value="false" key="maximized"/>
@@ -47,11 +59,11 @@
 		<item value="141" key="colWidth1"/>
 		<item value="0" key="sortColumn"/>
 		<item value="1" key="sortDirection"/>
-		<item value="726" key="width"/>
-		<item value="-1117" key="x"/>
-		<item value="55" key="y"/>
+		<item value="899" key="width"/>
+		<item value="540" key="x"/>
+		<item value="49" key="y"/>
 		<item value="-1" key="selectedRow"/>
-		<item value="688" key="height"/>
+		<item value="804" key="height"/>
 	</section>
 	<section name="net.sf.eclipsecs.ui.config.RuleConfigurationEditDialog#OneTopLevelClass">
 		<item value="false" key="maximized"/>
@@ -96,7 +108,11 @@
 	</section>
 	<section name="net.sf.eclipsecs.ui.config.RuleConfigurationEditDialog#MaintainabilityIndex">
 		<item value="false" key="maximized"/>
+		<item value="881" key="width"/>
+		<item value="549" key="x"/>
+		<item value="139" key="y"/>
 		<item value="false" key="minimized"/>
+		<item value="469" key="height"/>
 	</section>
 	<section name="net.sf.eclipsecs.ui.config.RuleConfigurationEditDialog#InnerTypeLast">
 		<item value="false" key="maximized"/>
@@ -109,5 +125,9 @@
 		<item value="240" key="y"/>
 		<item value="false" key="minimized"/>
 		<item value="281" key="height"/>
+	</section>
+	<section name="net.sf.eclipsecs.ui.config.RuleConfigurationEditDialog#ExpressionCounter">
+		<item value="false" key="maximized"/>
+		<item value="false" key="minimized"/>
 	</section>
 </section>

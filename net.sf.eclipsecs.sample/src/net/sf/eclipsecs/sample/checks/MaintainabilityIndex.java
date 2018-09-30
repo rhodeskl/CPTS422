@@ -79,6 +79,7 @@ public class MaintainabilityIndex extends AbstractCheck{
 
   @Override
   public void beginTree(DetailAST rootAST) {
+    halstead_metrics.beginTree(rootAST);
     executable_counter.beginTree(rootAST);
     comment_counter.beginTree(rootAST);
   }

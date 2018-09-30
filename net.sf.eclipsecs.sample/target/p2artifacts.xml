@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?artifactRepository version='1.1.0'?>
 <artifacts size='1'>
-  <artifact classifier='osgi.bundle' id='net.sf.eclipsecs.sample' version='8.12.0.201809300845'>
+  <artifact classifier='osgi.bundle' id='net.sf.eclipsecs.sample' version='8.12.0.201809302138'>
     <properties size='5'>
-      <property name='artifact.size' value='25620'/>
-      <property name='download.size' value='25620'/>
+      <property name='artifact.size' value='26616'/>
+      <property name='download.size' value='26616'/>
       <property name='maven-groupId' value='net.sf.eclipsecs'/>
       <property name='maven-artifactId' value='net.sf.eclipsecs.sample'/>
       <property name='maven-version' value='8.12.0-SNAPSHOT'/>

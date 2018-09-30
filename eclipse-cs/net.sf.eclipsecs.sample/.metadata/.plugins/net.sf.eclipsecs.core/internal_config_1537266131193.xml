@@ -18,5 +18,8 @@
     <module name="VariableCounter"/>
     <module name="LoopingStatementCounter"/>
     <module name="HalsteadMetrics"/>
+    <module name="MethodCounter"/>
+    <module name="ExpressionCounter"/>
+    <module name="CastCounter"/>
   </module>
 </module>

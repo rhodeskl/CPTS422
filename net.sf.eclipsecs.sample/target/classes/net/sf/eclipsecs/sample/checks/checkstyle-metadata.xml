@@ -45,5 +45,15 @@
         	<description>%CastCounter.desc</description>
         </rule-metadata>
         
+        <rule-metadata name="%ExpressionCounter.name" internal-name="ExpressionCounter" parent="TreeWalker">
+        	<alternative-name interal-name="net.sf.eclipsecs.sample.checks.ExpressionCounter" />
+        	<description>%ExpressionCounter.desc</description>
+        </rule-metadata>
+        
+        <rule-metadata name="%MethodCounter.name" internal-name="MethodCounter" parent="TreeWalker">
+        	<alternative-name interal-name="net.sf.eclipsecs.sample.checks.MethodCounter" />
+        	<description>%MethodCounter.desc</description>
+        </rule-metadata>
+        
     </rule-group-metadata>
 </checkstyle-metadata>
