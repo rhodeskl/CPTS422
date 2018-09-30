@@ -35,5 +35,10 @@
         	<description>%VariableCounter.desc</description>
         </rule-metadata>
         
+        <rule-metadata name="%LoopingStatementCounter.name" internal-name="LoopingStatementCounter" parent="TreeWalker">
+        	<alternative-name internal-name="net.sf.eclipsecs.sample.checks.LoopingStatementCounter" />
+        	<description>%LoopingStatementCounter.desc</description>
+        </rule-metadata>
+        
     </rule-group-metadata>
 </checkstyle-metadata>
