@@ -1,5 +1,8 @@
 package net.sf.eclipsecs.sample.checks;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -11,6 +14,9 @@ public class ExpressionCounter extends AbstractCheck {
   private int numOperands;
   private int numUniqueOperators;
   private int numUniqueOperands;
+  private List<Integer> foundOperators = new ArrayList<>();
+  private List<String> foundOperands = new ArrayList<>();
+
 
   public ExpressionCounter() {
     this.numExpressions = 0;
@@ -78,7 +84,7 @@ public class ExpressionCounter extends AbstractCheck {
                       TokenTypes.NUM_LONG, TokenTypes.PLUS, TokenTypes.PLUS_ASSIGN,TokenTypes.POST_DEC, TokenTypes.POST_INC, 
                       TokenTypes.QUESTION, TokenTypes.RBRACK, TokenTypes.RCURLY, TokenTypes.RPAREN, TokenTypes.SEMI, TokenTypes.SL,
                       TokenTypes.SL_ASSIGN, TokenTypes.SR, TokenTypes.SR_ASSIGN, TokenTypes.STAR_ASSIGN, TokenTypes.UNARY_MINUS,
-                      TokenTypes.UNARY_PLUS};
+                      TokenTypes.UNARY_PLUS, TokenTypes.IDENT, TokenTypes.CHAR_LITERAL, TokenTypes.STRING_LITERAL};
   }
 
   @Override
@@ -87,7 +93,7 @@ public class ExpressionCounter extends AbstractCheck {
   }
 
   @Override
-  public void visitToken(DetailAST ast) {
+  public void visitToken(DetailAST ast) {    
     if (ast.getType() == TokenTypes.ABSTRACT || ast.getType() == TokenTypes.ASSIGN || ast.getType() == TokenTypes.BAND 
             || ast.getType() == TokenTypes.BAND_ASSIGN || ast.getType() == TokenTypes.BNOT || ast.getType() == TokenTypes.BOR
             || ast.getType() == TokenTypes.BOR_ASSIGN || ast.getType() == TokenTypes.BSR || ast.getType() == TokenTypes.BSR_ASSIGN 
@@ -123,18 +129,28 @@ public class ExpressionCounter extends AbstractCheck {
             || ast.getType() == TokenTypes.SR || ast.getType() == TokenTypes.SR_ASSIGN || ast.getType() == TokenTypes.STAR_ASSIGN || ast.getType() == TokenTypes.UNARY_MINUS
             || ast.getType() == TokenTypes.UNARY_PLUS) {
       numOperators++;
+      if (!foundOperators.contains(ast.getType())) {
+      foundOperators.add(ast.getType());
+      }
+      numUniqueOperators = foundOperators.size();
     } else if (ast.getType() == TokenTypes.EXPR) {
       numExpressions++;
-      DetailAST expr = ast.findFirstToken(TokenTypes.EXPR);
-      numOperands = expr.getChildCount();
-    } 
+    } else if (ast.getType() == TokenTypes.NUM_DOUBLE || ast.getType() == TokenTypes.NUM_FLOAT || ast.getType() == TokenTypes.NUM_INT || ast.getType() == TokenTypes.NUM_LONG 
+            || ast.getType() == TokenTypes.IDENT || ast.getType() == TokenTypes.STRING_LITERAL) {
+      numUniqueOperands++;
+      if (!foundOperands.contains(ast.getText())) {
+        foundOperands.add(ast.getText());
+      }
+      numUniqueOperands = foundOperands.size();
+    }
   }
     
   @Override
   public void finishTree(DetailAST rootAST){
       log(rootAST, "expressionCounter", numExpressions);
-      log(rootAST, "operators", numOperators);
-      log(rootAST, "operands", numOperands);
+      log(rootAST, "numberOperators", numOperators);
+      log(rootAST, "numberOperands", numOperands);
+      log(rootAST, "numberUniqueOperators", numUniqueOperators);
+      log(rootAST, "numberUniqueOperands", numUniqueOperands);
     }
 }
-
