@@ -40,5 +40,10 @@
         	<description>%LoopingStatementCounter.desc</description>
         </rule-metadata>
         
+        <rule-metadata name="%CastCounter.name" internal-name="CastCounter" parent="TreeWalker">
+        	<alternative-name interal-name="net.sf.eclipsecs.sample.checks.CastCounter" />
+        	<description>%CastCounter.desc</description>
+        </rule-metadata>
+        
     </rule-group-metadata>
 </checkstyle-metadata>
