@@ -69,6 +69,7 @@ public class HalsteadMetrics extends AbstractCheck{
 	public void setHalsteadEffort() {
 		hEffort = hDifficulty * hVolume;
 	}
+
 	
 	@Override
   public int[] getDefaultTokens() {
@@ -83,6 +84,11 @@ public class HalsteadMetrics extends AbstractCheck{
   @Override
   public final int[] getRequiredTokens() {
     return expression_counter.getRequiredTokens();
+  }
+  
+  @Override
+  public void beginTree(DetailAST rootAST) {
+    expression_counter.beginTree(rootAST);
   }
   
   @Override

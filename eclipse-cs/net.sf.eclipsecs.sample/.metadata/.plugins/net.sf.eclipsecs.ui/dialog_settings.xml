@@ -28,6 +28,14 @@
 		<section name="masterView">
 		</section>
 		<section name="detailView">
+			<item value="1" key="sortColumn"/>
+			<item value="1" key="sortDirection"/>
+			<item value="300" key="colWidth4"/>
+			<item value="300" key="colWidth2"/>
+			<item value="36" key="colWidth3"/>
+			<item value="0" key="selectedRow"/>
+			<item value="20" key="colWidth0"/>
+			<item value="150" key="colWidth1"/>
 		</section>
 	</section>
 	<section name="net.sf.eclipsecs.ui.config.CheckConfigurationConfigureDialog">
