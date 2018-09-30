@@ -15,6 +15,18 @@
             <message key="methodlimit" value="Man, only {0} methods allowed." />
         </module>
         
+        <module name="HalsteadMetrics">
+        	<message key="hLength" value="Halstead Length: {0}" />
+        	<message key="hVocab" value="Halstead Vocabulary: {0}" />
+        	<message key="hVolume" value="Halstead Volume: {0}" />
+        	<message key="hDifficulty" value="Halstead Difficulty: {0}" />
+        	<message key="hEffort" value="Halstead Effort: {0}" />
+        </module>
+        
+        <module name="MaintainabilityIndex">
+        	<message key="maintainability" value="Maintainability Index: {0}" />
+        </module>
+        
         <module name="CommentCounter">
         	<message key="commentCounter" value="Number of comments: {0}" />
         	<message key="commentLines" value="Number of comment lines: {0}" />
