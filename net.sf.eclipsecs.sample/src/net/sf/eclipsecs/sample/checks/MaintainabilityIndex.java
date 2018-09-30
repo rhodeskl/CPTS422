@@ -5,7 +5,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 public class MaintainabilityIndex extends AbstractCheck{
   
-  private double maintainability;
+  private double maintainability_index;
   private HalsteadMetrics halstead_metrics;
   private CyclomaticComplexity cyclomatic_complexity;
   private ExecutableStatementCount executable_counter;
@@ -13,7 +13,7 @@ public class MaintainabilityIndex extends AbstractCheck{
   
   public MaintainabilityIndex()
   {
-    this.maintainability = 0;
+    this.maintainability_index = 0;
     this.halstead_metrics = new HalsteadMetrics();
     this.cyclomatic_complexity = new CyclomaticComplexity();
     this.executable_counter = new ExecutableStatementCount();
@@ -26,18 +26,19 @@ public class MaintainabilityIndex extends AbstractCheck{
     int loc = executable_counter.getNumLines();
     double cm = comment_counter.getNumComments()/(comment_counter.getNumComments()+loc);
     
-    
-    maintainability = 171 - 
+    //Maintainability Index formula. Have to use log(x)/log(2) to get log base 2.
+    maintainability_index = 171 -
              (5.2 * (Math.log(v)/Math.log(2))) - 
              (0.23 * g) - 
-             (16.2 * (Math.log(loc)/Math.log(2))) + 
+             (16.2 * (Math.log(loc))/(Math.log(2))) + 
              (50 * Math.sin(Math.sqrt(2.4 * cm)));
   }
   
   public double getMaintainabilityIndex() {
-    return maintainability;
+    return maintainability_index;
   }
   
+  //Used to merge all the token arrays into one array
   private int[] merge(int[] arr1, int[] arr2)
   {
     int[] merged_arr = new int[arr1.length + arr2.length];
@@ -47,6 +48,7 @@ public class MaintainabilityIndex extends AbstractCheck{
     
     return merged_arr;
   }
+  
   
   @Override
   public int[] getDefaultTokens() {
@@ -71,7 +73,7 @@ public class MaintainabilityIndex extends AbstractCheck{
             executable_counter.getRequiredTokens()),
             comment_counter.getRequiredTokens());
   }
-  
+
   @Override
   public boolean isCommentNodesRequired() {
     return comment_counter.isCommentNodesRequired();
@@ -80,6 +82,7 @@ public class MaintainabilityIndex extends AbstractCheck{
   @Override
   public void beginTree(DetailAST rootAST) {
     halstead_metrics.beginTree(rootAST);
+    cyclomatic_complexity.beginTree(rootAST);
     executable_counter.beginTree(rootAST);
     comment_counter.beginTree(rootAST);
   }
@@ -100,8 +103,9 @@ public class MaintainabilityIndex extends AbstractCheck{
   
   @Override
   public void finishTree(DetailAST rootAST) {
+    halstead_metrics.setAllHalstead();
     setMaintainabilityIndex();
-    log(rootAST, "maintainability", maintainability);
+    log(rootAST, "maintainability", maintainability_index);
   }
 }
 

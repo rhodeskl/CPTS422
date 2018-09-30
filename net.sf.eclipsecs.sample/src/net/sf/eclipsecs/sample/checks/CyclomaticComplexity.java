@@ -25,6 +25,12 @@ public class CyclomaticComplexity extends AbstractCheck{
   }
   
   @Override
+  public void beginTree(DetailAST rootAST)
+  {
+    currentValue = INITIAL_VALUE;
+  }
+  
+  @Override
   public int[] getDefaultTokens() {
     return new int[] {
         TokenTypes.CTOR_DEF,

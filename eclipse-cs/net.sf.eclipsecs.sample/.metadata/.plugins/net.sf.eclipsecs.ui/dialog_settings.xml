@@ -8,6 +8,14 @@
 		<item value="false" key="minimized"/>
 		<item value="469" key="height"/>
 	</section>
+	<section name="net.sf.eclipsecs.ui.config.RuleConfigurationEditDialog#VariableCounter">
+		<item value="false" key="maximized"/>
+		<item value="574" key="width"/>
+		<item value="512" key="x"/>
+		<item value="250" key="y"/>
+		<item value="false" key="minimized"/>
+		<item value="281" key="height"/>
+	</section>
 	<section name="net.sf.eclipsecs.ui.config.RuleConfigurationEditDialog#HideUtilityClassConstructor">
 		<item value="false" key="maximized"/>
 		<item value="false" key="minimized"/>
@@ -30,7 +38,19 @@
 	</section>
 	<section name="net.sf.eclipsecs.ui.config.RuleConfigurationEditDialog#MethodCounter">
 		<item value="false" key="maximized"/>
+		<item value="574" key="width"/>
+		<item value="512" key="x"/>
+		<item value="250" key="y"/>
 		<item value="false" key="minimized"/>
+		<item value="281" key="height"/>
+	</section>
+	<section name="net.sf.eclipsecs.ui.config.RuleConfigurationEditDialog#LoopingStatementCounter">
+		<item value="false" key="maximized"/>
+		<item value="630" key="width"/>
+		<item value="484" key="x"/>
+		<item value="250" key="y"/>
+		<item value="false" key="minimized"/>
+		<item value="281" key="height"/>
 	</section>
 	<section name="net.sf.eclipsecs.ui.config.RuleConfigurationEditDialog#FinalClass">
 		<item value="false" key="maximized"/>
@@ -38,6 +58,12 @@
 	</section>
 	<section name="net.sf.eclipsecs.ui.stats.views.MarkerStatsView">
 		<section name="masterView">
+			<item value="1" key="sortColumn"/>
+			<item value="1" key="sortDirection"/>
+			<item value="85" key="colWidth2"/>
+			<item value="-1" key="selectedRow"/>
+			<item value="20" key="colWidth0"/>
+			<item value="400" key="colWidth1"/>
 		</section>
 		<section name="detailView">
 			<item value="1" key="sortColumn"/>
@@ -60,8 +86,8 @@
 		<item value="0" key="sortColumn"/>
 		<item value="1" key="sortDirection"/>
 		<item value="899" key="width"/>
-		<item value="540" key="x"/>
-		<item value="49" key="y"/>
+		<item value="350" key="x"/>
+		<item value="35" key="y"/>
 		<item value="-1" key="selectedRow"/>
 		<item value="804" key="height"/>
 	</section>
@@ -80,7 +106,11 @@
 	</section>
 	<section name="net.sf.eclipsecs.ui.config.RuleConfigurationEditDialog#CommentCounter">
 		<item value="false" key="maximized"/>
+		<item value="574" key="width"/>
+		<item value="512" key="x"/>
+		<item value="250" key="y"/>
 		<item value="false" key="minimized"/>
+		<item value="281" key="height"/>
 	</section>
 	<section name="net.sf.eclipsecs.ui.config.RuleConfigurationEditDialog#MethodLimit">
 		<item value="false" key="maximized"/>
@@ -109,8 +139,8 @@
 	<section name="net.sf.eclipsecs.ui.config.RuleConfigurationEditDialog#MaintainabilityIndex">
 		<item value="false" key="maximized"/>
 		<item value="881" key="width"/>
-		<item value="549" key="x"/>
-		<item value="139" key="y"/>
+		<item value="348" key="x"/>
+		<item value="142" key="y"/>
 		<item value="false" key="minimized"/>
 		<item value="469" key="height"/>
 	</section>
@@ -128,6 +158,10 @@
 	</section>
 	<section name="net.sf.eclipsecs.ui.config.RuleConfigurationEditDialog#ExpressionCounter">
 		<item value="false" key="maximized"/>
+		<item value="578" key="width"/>
+		<item value="510" key="x"/>
+		<item value="250" key="y"/>
 		<item value="false" key="minimized"/>
+		<item value="281" key="height"/>
 	</section>
 </section>

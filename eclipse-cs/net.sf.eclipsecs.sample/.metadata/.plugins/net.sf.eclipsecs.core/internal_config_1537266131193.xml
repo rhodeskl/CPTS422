@@ -14,12 +14,13 @@
     <module name="MethodLimit">
       <property name="max" value="2"/>
     </module>
+    <module name="HalsteadMetrics"/>
+    <module name="MaintainabilityIndex"/>
     <module name="CommentCounter"/>
     <module name="VariableCounter"/>
     <module name="LoopingStatementCounter"/>
-    <module name="HalsteadMetrics"/>
-    <module name="MethodCounter"/>
-    <module name="ExpressionCounter"/>
     <module name="CastCounter"/>
+    <module name="ExpressionCounter"/>
+    <module name="MethodCounter"/>
   </module>
 </module>

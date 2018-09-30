@@ -12,6 +12,11 @@ public class ExecutableStatementCount extends AbstractCheck{
   private final Deque<Context> contextStack = new ArrayDeque<>();
   private Context context;
   
+  public ExecutableStatementCount()
+  {
+    
+  }
+  
   @Override
   public int[] getDefaultTokens() {
     return new int[] {
@@ -57,8 +62,6 @@ public class ExecutableStatementCount extends AbstractCheck{
       case TokenTypes.SLIST:
             visitSlist(ast);
             break;
-      default:
-            throw new IllegalStateException(ast.toString());
     }
   }
 
@@ -74,8 +77,6 @@ public class ExecutableStatementCount extends AbstractCheck{
       case TokenTypes.SLIST:
         // Do nothing
         break;
-      default:
-        throw new IllegalStateException(ast.toString());
     }
   }
   
@@ -113,34 +114,18 @@ public class ExecutableStatementCount extends AbstractCheck{
   }
 
   private static class Context {
-
-    /** Member AST node. */
     private final DetailAST ast;
-  
-    /** Counter for context elements. */
     private int count;
   
-    /**
-    * Creates new member context.
-    * @param ast member AST node.
-    */
     Context(DetailAST ast) {
       this.ast = ast;
       count = 0;
     }
     
-    /**
-    * Increase count.
-    * @param addition the count increment.
-    */
     public void addCount(int addition) {
       count += addition;
     }
   
-    /**
-    * Gets the member AST node.
-    * @return the member AST node.
-    */
     public DetailAST getAST() {
       return ast;
     }

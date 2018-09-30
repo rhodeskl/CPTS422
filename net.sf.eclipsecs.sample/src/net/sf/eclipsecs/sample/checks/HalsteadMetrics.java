@@ -22,6 +22,7 @@ public class HalsteadMetrics extends AbstractCheck{
 	  this.expression_counter = new ExpressionCounter();
 	}
 	
+	//Calculate all the Halstead values
 	public void setAllHalstead() {
 	  setHalsteadLength();
 	  setHalsteadVocab();
@@ -88,6 +89,11 @@ public class HalsteadMetrics extends AbstractCheck{
   
   @Override
   public void beginTree(DetailAST rootAST) {
+    this.hLength = 0;
+    this.hVocab = 0;
+    this.hVolume = 0;
+    this.hDifficulty = 0;
+    this.hEffort = 0;
     expression_counter.beginTree(rootAST);
   }
   

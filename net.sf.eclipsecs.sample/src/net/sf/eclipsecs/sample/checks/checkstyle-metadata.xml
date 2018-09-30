@@ -51,7 +51,7 @@
         </rule-metadata>
         
         <rule-metadata name="%MethodCounter.name" internal-name="MethodCounter" parent="TreeWalker">
-        	<alternative-name interal-name="net.sf.eclipsecs.sample.checks.MethodCounter" />
+        	<alternative-name internal-name="net.sf.eclipsecs.sample.checks.MethodCounter" />
         	<description>%MethodCounter.desc</description>
         </rule-metadata>
         
