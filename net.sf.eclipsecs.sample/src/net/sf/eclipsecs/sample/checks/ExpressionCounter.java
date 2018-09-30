@@ -137,7 +137,7 @@ public class ExpressionCounter extends AbstractCheck {
       numExpressions++;
     } else if (ast.getType() == TokenTypes.NUM_DOUBLE || ast.getType() == TokenTypes.NUM_FLOAT || ast.getType() == TokenTypes.NUM_INT || ast.getType() == TokenTypes.NUM_LONG 
             || ast.getType() == TokenTypes.IDENT || ast.getType() == TokenTypes.STRING_LITERAL) {
-      numUniqueOperands++;
+      numOperands++;
       if (!foundOperands.contains(ast.getText())) {
         foundOperands.add(ast.getText());
       }
