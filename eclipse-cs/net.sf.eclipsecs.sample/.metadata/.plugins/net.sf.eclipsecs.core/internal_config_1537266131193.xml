@@ -17,5 +17,6 @@
     <module name="CommentCounter"/>
     <module name="VariableCounter"/>
     <module name="LoopingStatementCounter"/>
+    <module name="HalsteadMetrics"/>
   </module>
 </module>
