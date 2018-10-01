@@ -1,14 +1,10 @@
 /.metadata/
 /.recommenders/
-.recommenders
-/Structural_Metrics/bin
-/structuralMetrics/bin
-/"CheckStyle Test/.settings"
-/"CheckStyle Test/bin"
-/eclipse-cs/.settings
-/net.sf.eclipsecs.sample/.settings
-/net.sf.eclipsecs.sample/META-INF
-/net.sf.eclipsecs.sample/.checkstyle
-/net.sf.eclipsecs.sample/.classpath
-/net.sf.eclipsecs.sample/java.header
-/net.sf.eclipsecs.sample/target
+.recommenders/
+*.settings/
+*bin/
+*META-INF/
+*.checkstyle
+*.classpath
+*java.header
+*target/
