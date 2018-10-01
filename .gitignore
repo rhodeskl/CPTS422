@@ -1,10 +1,9 @@
-/.metadata/
-/.recommenders/
+.metadata/
 .recommenders/
-*.settings/
-*bin/
-*META-INF/
+.settings/
+bin/
+META-INF/
 *.checkstyle
 *.classpath
 *java.header
-*target/
+target/
