@@ -3,23 +3,22 @@ package net.sf.eclipsecs.sample;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Ignore;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.doReturn;
 
 import net.sf.eclipsecs.sample.checks.VariableCounter;
 
 import static junit.framework.TestCase.assertEquals;
+
+import java.util.Arrays;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class VariableCounterTest {
   private VariableCounter variableCounter;
-  private DetailAST spyAst;
   
   @Before
   public void setUp() {
-    VariableCounter variableCounter = new VariableCounter();
-    DetailAST spyAst = spy(new DetailAST());
+    variableCounter = new VariableCounter();
   }
   
   @Test
@@ -30,29 +29,39 @@ public class VariableCounterTest {
   @Test
   public void testGetAcceptableTokens() {
     int[] expected = {TokenTypes.VARIABLE_DEF};
-    assertEquals(expected, variableCounter.getAcceptableTokens());
+    int[] actual = variableCounter.getAcceptableTokens();
+    boolean isEqual = Arrays.equals(expected, actual);
+    assertEquals(true, isEqual);
   }
   
   @Test
   public void testGetDefaultTokens() {
     int[] expected = {TokenTypes.VARIABLE_DEF};
-    assertEquals(expected, variableCounter.getDefaultTokens());
+    int[] actual = variableCounter.getDefaultTokens();
+    boolean isEqual = Arrays.equals(expected, actual);
+    assertEquals(true, isEqual);
   }
   
   @Test
   public void testGetRequiredTokens() {
     int[] expected = {TokenTypes.VARIABLE_DEF};
-    assertEquals(expected, variableCounter.getDefaultTokens());
+    int[] actual = variableCounter.getRequiredTokens();
+    boolean isEqual = Arrays.equals(expected, actual);
+    assertEquals(true, isEqual);
   }
   
   @Test
   public void testVisitToken() {
+    DetailAST ast = new DetailAST();
     //visit token should increment numVariables if the token type is a variable definition
-    doReturn(TokenTypes.VARIABLE_DEF).when(spyAst.getType());
-    variableCounter.visitToken(spyAst);
+    ast.setType(TokenTypes.VARIABLE_DEF);
+    assertEquals(TokenTypes.VARIABLE_DEF, ast.getType());
+    variableCounter.visitToken(ast);
     assertEquals(1, variableCounter.getNumVariables());
     //visit token should not increment numVariables if the token type is not a variable definition
-    doReturn(TokenTypes.ABSTRACT).when(spyAst.getType());
+    ast.setType(TokenTypes.ABSTRACT);
+    assertEquals(TokenTypes.ABSTRACT, ast.getType());
+    variableCounter.visitToken(ast);
     assertEquals(1, variableCounter.getNumVariables());
   }
   
