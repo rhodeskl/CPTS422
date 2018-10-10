@@ -2,10 +2,12 @@ package net.sf.eclipsecs.sample;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.*;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.junit.Ignore;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import net.sf.eclipsecs.sample.checks.VariableCounter;
 
@@ -16,6 +18,7 @@ import java.util.Arrays;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
+@RunWith(PowerMockRunner.class)
 @PrepareForTest(DetailAST.class)
 public class VariableCounterTest {
   private VariableCounter variableCounter;
