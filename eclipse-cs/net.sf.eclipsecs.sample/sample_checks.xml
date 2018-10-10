@@ -10,10 +10,48 @@
     </module>
 
     <module name="TreeWalker">
-
         <module name="MethodLimit">
             <property name="max" value="1" />
             <message key="methodlimit" value="Man, only {0} methods allowed." />
+        </module>
+        
+        <module name="HalsteadMetrics">
+        	<message key="hLength" value="Halstead Length: {0}" />
+        	<message key="hVocab" value="Halstead Vocabulary: {0}" />
+        	<message key="hVolume" value="Halstead Volume: {0}" />
+        	<message key="hDifficulty" value="Halstead Difficulty: {0}" />
+        	<message key="hEffort" value="Halstead Effort: {0}" />
+        </module>
+        
+        <module name="MaintainabilityIndex">
+        	<message key="maintainability" value="Maintainability Index: {0}" />
+        </module>
+        
+        <module name="CommentCounter">
+        	<message key="commentCounter" value="Number of comments: {0}" />
+        	<message key="commentLines" value="Number of comment lines: {0}" />
+        </module>
+        <module name="VariableCounter">
+        	<message key="variableCounter" value="Number of variables: {0}" />
+        </module>
+        <module name="LoopingStatementCounter">
+        	<message key="loopingCounter" value="Number of looping statements: {0}" />
+        </module>
+        <module name="CastCounter">
+        	<message key="castCounter" value="Number of cast statements: {0}" />
+        </module>
+        
+        <module name="ExpressionCounter">
+        	<message key="expressionCounter" value="Number of expressions: {0}" />
+        	<message key="numberOperators" value="Number of operators: {0}" />
+        	<message key="numberOperands" value="Number of operands: {0}" />
+        	<message key="numberUniqueOperators" value="Number of unique operators: {0}" />
+        	<message key="numberUniqueOperands" value="Number of unique operands: {0}" />
+        </module>
+        
+        <module name="MethodCounter">
+        	<message key="externalReferences" value="Number of external method references: {0}" />
+        	<message key="localReferences" value="Number of local method references: {0}" />
         </module>
         
         <!-- <module name="LineLength"> <property name="max" value="${maxLineLength}"/> </module> -->
