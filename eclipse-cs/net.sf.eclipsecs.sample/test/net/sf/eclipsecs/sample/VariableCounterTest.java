@@ -18,7 +18,7 @@ import java.util.Arrays;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-@RunWith(PowerMockRunner.class)
+//@RunWith(PowerMockRunner.class)
 @PrepareForTest(DetailAST.class)
 public class VariableCounterTest {
   private VariableCounter variableCounter;
