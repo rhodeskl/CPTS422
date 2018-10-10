@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.Ignore;
 import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.doReturn;
 
 import net.sf.eclipsecs.sample.checks.VariableCounter;
 
@@ -18,7 +19,7 @@ public class VariableCounterTest {
   @Before
   public void setUp() {
     VariableCounter variableCounter = new VariableCounter();
-    DetailAst spyAst = spy(new DetailAST());
+    DetailAST spyAst = spy(new DetailAST());
   }
   
   @Test
@@ -47,11 +48,11 @@ public class VariableCounterTest {
   @Test
   public void testVisitToken() {
     //visit token should increment numVariables if the token type is a variable definition
-    doReturn(TokenTypes.VARIABLE_DEF).when(ast.getType());
-    variableCounter.visitToken(ast);
+    doReturn(TokenTypes.VARIABLE_DEF).when(spyAst.getType());
+    variableCounter.visitToken(spyAst);
     assertEquals(1, variableCounter.getNumVariables());
     //visit token should not increment numVariables if the token type is not a variable definition
-    doReturn(TokenTypes.ABSTRACT).when(ast.getType());
+    doReturn(TokenTypes.ABSTRACT).when(spyAst.getType());
     assertEquals(1, variableCounter.getNumVariables());
   }
   
