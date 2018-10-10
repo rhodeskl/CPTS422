@@ -2,6 +2,7 @@ package net.sf.eclipsecs.sample;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.powermock.api.mockito.PowerMockito;
 import org.junit.Ignore;
 
 import net.sf.eclipsecs.sample.checks.VariableCounter;
@@ -19,6 +20,7 @@ public class VariableCounterTest {
   @Before
   public void setUp() {
     variableCounter = new VariableCounter();
+    DetailAST mockAst = PowerMockito.mock(new DetailAST()));
   }
   
   @Test
