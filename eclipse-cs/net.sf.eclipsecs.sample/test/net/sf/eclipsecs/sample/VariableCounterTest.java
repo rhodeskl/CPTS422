@@ -2,7 +2,9 @@ package net.sf.eclipsecs.sample;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.powermock.api.mockito.PowerMockito;
+import org.mockito.Mockito;
+import org.powermock.api.mockito.*;
+import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.junit.Ignore;
 
 import net.sf.eclipsecs.sample.checks.VariableCounter;
@@ -14,13 +16,15 @@ import java.util.Arrays;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
+@PrepareForTest(DetailAST.class)
 public class VariableCounterTest {
   private VariableCounter variableCounter;
+  private DetailAST astMock;
   
   @Before
   public void setUp() {
     variableCounter = new VariableCounter();
-    DetailAST mockAst = PowerMockito.mock(new DetailAST()));
+    astMock = PowerMockito.mock(DetailAST.class);
   }
   
   @Test
@@ -54,22 +58,13 @@ public class VariableCounterTest {
   
   @Test
   public void testVisitToken() {
-    DetailAST ast = new DetailAST();
     //visit token should increment numVariables if the token type is a variable definition
-    ast.setType(TokenTypes.VARIABLE_DEF);
-    assertEquals(TokenTypes.VARIABLE_DEF, ast.getType());
-    variableCounter.visitToken(ast);
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.VARIABLE_DEF);
+    variableCounter.visitToken(astMock);
     assertEquals(1, variableCounter.getNumVariables());
     //visit token should not increment numVariables if the token type is not a variable definition
-    ast.setType(TokenTypes.ABSTRACT);
-    assertEquals(TokenTypes.ABSTRACT, ast.getType());
-    variableCounter.visitToken(ast);
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.ABSTRACT);
+    variableCounter.visitToken(astMock);
     assertEquals(1, variableCounter.getNumVariables());
-  }
-  
-  @Test
-  @Ignore //don't know whether this should be tested or not
-  public void testFinishTree() {
-    
   }
 }
