@@ -1,4 +1,4 @@
-package test.net.sf.eclipsecs.sample;
+package net.sf.eclipsecs.sample;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,14 +12,13 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class VariableCounterTest {
-  
   private VariableCounter variableCounter;
   private DetailAST spyAst;
   
   @Before
   public void setUp() {
-    variableCounter = new VariableCounter();
-    spyAst = spy(new DetailAST());
+    VariableCounter variableCounter = new VariableCounter();
+    DetailAst spyAst = spy(new DetailAST());
   }
   
   @Test
