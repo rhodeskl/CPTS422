@@ -125,10 +125,5 @@ public class CommentCounterTest {
     assertEquals(2, commentCounter.getNumComments());
     assertEquals(expectedNumLines, commentCounter.getNumLines());
   }
-  
-  @Test
-  public void testFinishTree() {
-    
-  }
 
 }

@@ -6,7 +6,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.*;
 import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.junit.Ignore;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import net.sf.eclipsecs.sample.checks.VariableCounter;
