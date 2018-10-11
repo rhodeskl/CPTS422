@@ -19,26 +19,8 @@
         </dependency>
         <dependency>
 			<groupId>org.powermock</groupId>
-			<artifactId>powermock-api-mockito2</artifactId>
-			<version>1.7.4</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.powermock</groupId>
-			<artifactId>powermock-module-junit4</artifactId>
-			<version>1.7.4</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.powermock</groupId>
-			<artifactId>powermock-api-support</artifactId>
-			<version>1.7.4</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.powermock</groupId>
-			<artifactId>powermock-core</artifactId>
-			<version>1.7.4</version>
+			<artifactId>powermock-mockito-release-full-1.6.4</artifactId>
+			<version>1.6.4</version>
 			<scope>test</scope>
 		</dependency>
     </dependencies>
