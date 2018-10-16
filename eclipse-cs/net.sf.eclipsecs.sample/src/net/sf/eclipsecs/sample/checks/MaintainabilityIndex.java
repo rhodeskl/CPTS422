@@ -24,7 +24,7 @@ public class MaintainabilityIndex extends AbstractCheck{
     double v = halstead_metrics.getHalsteadVolume();
     int g = cyclomatic_complexity.getCurrentValue();
     int loc = executable_counter.getNumLines();
-    double cm = comment_counter.getNumComments()/(comment_counter.getNumComments()+loc);
+    double cm = (double)comment_counter.getNumComments()/(comment_counter.getNumComments()+loc);
     
     //Maintainability Index formula. Have to use log(x)/log(2) to get log base 2.
     maintainability_index = 171 -
@@ -67,7 +67,7 @@ public class MaintainabilityIndex extends AbstractCheck{
   }
   
   @Override
-  public final int[] getRequiredTokens() {
+  public int[] getRequiredTokens() {
     return merge(merge(merge(halstead_metrics.getRequiredTokens(),
             cyclomatic_complexity.getRequiredTokens()),
             executable_counter.getRequiredTokens()),

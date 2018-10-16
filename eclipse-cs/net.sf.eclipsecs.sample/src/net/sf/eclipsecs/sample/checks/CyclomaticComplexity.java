@@ -71,7 +71,7 @@ public class CyclomaticComplexity extends AbstractCheck{
   }
   
   @Override
-  public final int[] getRequiredTokens() {
+  public int[] getRequiredTokens() {
     return new int[] {
         TokenTypes.CTOR_DEF,
         TokenTypes.METHOD_DEF,

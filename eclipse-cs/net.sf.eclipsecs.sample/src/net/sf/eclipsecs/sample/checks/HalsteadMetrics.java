@@ -83,7 +83,7 @@ public class HalsteadMetrics extends AbstractCheck{
   }
   
   @Override
-  public final int[] getRequiredTokens() {
+  public int[] getRequiredTokens() {
     return expression_counter.getRequiredTokens();
   }
   
