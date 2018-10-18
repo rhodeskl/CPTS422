@@ -13,6 +13,9 @@ import net.sf.eclipsecs.sample.checks.ExpressionCounter;
 import static junit.framework.TestCase.assertEquals;
 
 import java.util.Arrays;
+import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -383,10 +386,134 @@ public class ExpressionCounterTest {
     Mockito.when(astMock.getText()).thenReturn("hello");
     expressionCounter.visitToken(astMock);
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.STRING_LITERAL);
-    Mockito.when(astMock.getText()).thenReturn("a");
+    Mockito.when(astMock.getText()).thenReturn("abc");
     expressionCounter.visitToken(astMock);
     
     assertEquals(6, expressionCounter.getNumOperands());
+    assertEquals(6, expressionCounter.getNumUniqueOperands());
+    
+    // visit token should not increment numExpressions, numOperators, and numOperands
+    boolean isNotAcceptableToken = false;
+    int token = -1;
+    Random random = new Random();
+    // this loop will generate a random token that is not an operator, an operand, or an expression
+    while(isNotAcceptableToken == false) {
+      token = random.nextInt(TokenTypes.WILDCARD_TYPE);
+      if(token != TokenTypes.ABSTRACT && token != TokenTypes.ASSIGN && token != TokenTypes.BAND 
+            && token != TokenTypes.BAND_ASSIGN && token != TokenTypes.BNOT && token != TokenTypes.BOR
+            && token != TokenTypes.BOR_ASSIGN && token != TokenTypes.BSR && token != TokenTypes.BSR_ASSIGN 
+            && token != TokenTypes.BXOR && token != TokenTypes.BXOR_ASSIGN && token != TokenTypes.COLON 
+            && token != TokenTypes.COMMA && token != TokenTypes.DEC && token != TokenTypes.DIV 
+            && token != TokenTypes.DIV_ASSIGN && token != TokenTypes.DO_WHILE && token != TokenTypes.DOT
+            && token != TokenTypes.ENUM && token != TokenTypes.EQUAL &&  token != TokenTypes.FINAL 
+            && token != TokenTypes.GE && token != TokenTypes.GT && token != TokenTypes.IMPORT 
+            && token != TokenTypes.INC && token != TokenTypes.INDEX_OP && token != TokenTypes.LAND 
+            && token != TokenTypes.LCURLY && token != TokenTypes.LE && token != TokenTypes.LITERAL_ASSERT
+            && token != TokenTypes.LITERAL_BOOLEAN && token != TokenTypes.LITERAL_BREAK 
+            && token != TokenTypes.LITERAL_BYTE && token != TokenTypes.LITERAL_CASE 
+            && token != TokenTypes.LITERAL_CATCH && token != TokenTypes.LITERAL_CHAR 
+            && token != TokenTypes.LITERAL_CLASS && token != TokenTypes.LITERAL_CONTINUE 
+            && token != TokenTypes.LITERAL_DEFAULT && token != TokenTypes.LITERAL_DO 
+            && token != TokenTypes.LITERAL_DOUBLE && token != TokenTypes.LITERAL_ELSE 
+            && token != TokenTypes.LITERAL_FALSE && token != TokenTypes.LITERAL_FINALLY 
+            && token != TokenTypes.LITERAL_FLOAT && token != TokenTypes.LITERAL_FOR && token != TokenTypes.LITERAL_IF 
+            && token != TokenTypes.LITERAL_INSTANCEOF && token != TokenTypes.LITERAL_INT 
+            && token != TokenTypes.LITERAL_INTERFACE && token != TokenTypes.LITERAL_LONG && token != TokenTypes.LITERAL_NATIVE
+            && token != TokenTypes.LITERAL_NEW && token != TokenTypes.LITERAL_NULL && token != TokenTypes.LITERAL_PRIVATE
+            && token != TokenTypes.LITERAL_PROTECTED && token != TokenTypes.LITERAL_PUBLIC && token !=  TokenTypes.LITERAL_RETURN
+            && token != TokenTypes.LITERAL_SHORT && token != TokenTypes.LITERAL_STATIC && token != TokenTypes.LITERAL_SUPER
+            && token != TokenTypes.LITERAL_SWITCH && token != TokenTypes.LITERAL_SYNCHRONIZED && token != TokenTypes.LITERAL_THIS
+            && token != TokenTypes.LITERAL_THROW && token != TokenTypes.LITERAL_THROWS && token != TokenTypes.LITERAL_TRANSIENT
+            && token != TokenTypes.LITERAL_TRUE && token != TokenTypes.LITERAL_TRY && token != TokenTypes.LITERAL_VOID 
+            && token != TokenTypes.LITERAL_VOLATILE && token != TokenTypes.LITERAL_WHILE && token != TokenTypes.LNOT 
+            && token != TokenTypes.LOR && token != TokenTypes.LPAREN && token != TokenTypes.METHOD_CALL && token != TokenTypes.MINUS 
+            && token != TokenTypes.MINUS_ASSIGN && token != TokenTypes.MOD && token != TokenTypes.MOD_ASSIGN && token != TokenTypes.NOT_EQUAL
+            && token != TokenTypes.PLUS && token != TokenTypes.PLUS_ASSIGN && token != TokenTypes.POST_DEC && token != TokenTypes.POST_INC 
+            && token != TokenTypes.QUESTION && token != TokenTypes.RBRACK && token != TokenTypes.RCURLY && token != TokenTypes.RPAREN 
+            && token != TokenTypes.SEMI && token != TokenTypes.SL && token != TokenTypes.SL_ASSIGN && token != TokenTypes.SR 
+            && token != TokenTypes.SR_ASSIGN && token != TokenTypes.STAR && token != TokenTypes.STAR_ASSIGN && token != TokenTypes.UNARY_MINUS 
+            && token != TokenTypes.UNARY_PLUS && token != TokenTypes.EXPR && token != TokenTypes.NUM_DOUBLE && token != TokenTypes.NUM_FLOAT 
+            && token != TokenTypes.NUM_INT && token != TokenTypes.NUM_LONG && token != TokenTypes.IDENT && token != TokenTypes.STRING_LITERAL) {
+        isNotAcceptableToken = true;
+      }
+    }
+    
+    Mockito.when(astMock.getType()).thenReturn(token);
+    expressionCounter.visitToken(astMock);
+    assertEquals(1, expressionCounter.getNumExpressions());
+    assertEquals(98, expressionCounter.getNumOperators());
+    assertEquals(6, expressionCounter.getNumOperands());
+    
+    // visit token should not increment numUniqueOperators
+    isNotAcceptableToken = false;
+    // this loop will generate a random token that matches on of the operators
+    while(isNotAcceptableToken == false) {
+      token = random.nextInt(TokenTypes.WILDCARD_TYPE);
+      if(token == TokenTypes.ABSTRACT || token == TokenTypes.ASSIGN || token == TokenTypes.BAND 
+            || token == TokenTypes.BAND_ASSIGN || token == TokenTypes.BNOT || token == TokenTypes.BOR
+            || token == TokenTypes.BOR_ASSIGN || token == TokenTypes.BSR || token == TokenTypes.BSR_ASSIGN 
+            || token == TokenTypes.BXOR || token == TokenTypes.BXOR_ASSIGN || token == TokenTypes.COLON 
+            || token == TokenTypes.COMMA || token == TokenTypes.DEC || token == TokenTypes.DIV 
+            || token == TokenTypes.DIV_ASSIGN || token == TokenTypes.DO_WHILE || token == TokenTypes.DOT
+            || token == TokenTypes.ENUM || token == TokenTypes.EQUAL ||  token == TokenTypes.FINAL 
+            || token == TokenTypes.GE || token == TokenTypes.GT || token == TokenTypes.IMPORT 
+            || token == TokenTypes.INC || token == TokenTypes.INDEX_OP || token == TokenTypes.LAND 
+            || token == TokenTypes.LCURLY || token == TokenTypes.LE || token == TokenTypes.LITERAL_ASSERT
+            || token == TokenTypes.LITERAL_BOOLEAN || token == TokenTypes.LITERAL_BREAK 
+            || token == TokenTypes.LITERAL_BYTE || token == TokenTypes.LITERAL_CASE 
+            || token == TokenTypes.LITERAL_CATCH || token == TokenTypes.LITERAL_CHAR 
+            || token == TokenTypes.LITERAL_CLASS || token == TokenTypes.LITERAL_CONTINUE 
+            || token == TokenTypes.LITERAL_DEFAULT || token == TokenTypes.LITERAL_DO 
+            || token == TokenTypes.LITERAL_DOUBLE || token == TokenTypes.LITERAL_ELSE 
+            || token == TokenTypes.LITERAL_FALSE || token == TokenTypes.LITERAL_FINALLY 
+            || token == TokenTypes.LITERAL_FLOAT || token == TokenTypes.LITERAL_FOR || token == TokenTypes.LITERAL_IF 
+            || token == TokenTypes.LITERAL_INSTANCEOF || token == TokenTypes.LITERAL_INT 
+            || token == TokenTypes.LITERAL_INTERFACE || token == TokenTypes.LITERAL_LONG || token == TokenTypes.LITERAL_NATIVE
+            || token == TokenTypes.LITERAL_NEW || token == TokenTypes.LITERAL_NULL || token == TokenTypes.LITERAL_PRIVATE
+            || token == TokenTypes.LITERAL_PROTECTED || token == TokenTypes.LITERAL_PUBLIC || token ==  TokenTypes.LITERAL_RETURN
+            || token == TokenTypes.LITERAL_SHORT || token == TokenTypes.LITERAL_STATIC || token == TokenTypes.LITERAL_SUPER
+            || token == TokenTypes.LITERAL_SWITCH || token == TokenTypes.LITERAL_SYNCHRONIZED || token == TokenTypes.LITERAL_THIS
+            || token == TokenTypes.LITERAL_THROW || token == TokenTypes.LITERAL_THROWS || token == TokenTypes.LITERAL_TRANSIENT
+            || token == TokenTypes.LITERAL_TRUE || token == TokenTypes.LITERAL_TRY || token == TokenTypes.LITERAL_VOID 
+            || token == TokenTypes.LITERAL_VOLATILE || token == TokenTypes.LITERAL_WHILE || token == TokenTypes.LNOT 
+            || token == TokenTypes.LOR || token == TokenTypes.LPAREN || token == TokenTypes.METHOD_CALL || token == TokenTypes.MINUS 
+            || token == TokenTypes.MINUS_ASSIGN || token == TokenTypes.MOD || token == TokenTypes.MOD_ASSIGN || token == TokenTypes.NOT_EQUAL
+            || token == TokenTypes.PLUS || token == TokenTypes.PLUS_ASSIGN || token == TokenTypes.POST_DEC || token == TokenTypes.POST_INC 
+            || token == TokenTypes.QUESTION || token == TokenTypes.RBRACK || token == TokenTypes.RCURLY || token == TokenTypes.RPAREN 
+            || token == TokenTypes.SEMI || token == TokenTypes.SL || token == TokenTypes.SL_ASSIGN || token == TokenTypes.SR 
+            || token == TokenTypes.SR_ASSIGN || token == TokenTypes.STAR || token == TokenTypes.STAR_ASSIGN || token == TokenTypes.UNARY_MINUS 
+            || token == TokenTypes.UNARY_PLUS) {
+        isNotAcceptableToken = true;
+      }
+    }
+    Mockito.when(astMock.getType()).thenReturn(token);
+    expressionCounter.visitToken(astMock);
+    assertEquals(98, expressionCounter.getNumUniqueOperators());
+    
+    // visit token should not increment numUniqueOperands
+    token = random.nextInt(6);
+    List<Integer> knownOperands = new ArrayList<>();
+    List<String> knownElements = new ArrayList<>();
+    
+    knownOperands.add(TokenTypes.NUM_DOUBLE);
+    knownOperands.add(TokenTypes.NUM_FLOAT);
+    knownOperands.add(TokenTypes.NUM_INT);
+    knownOperands.add(TokenTypes.NUM_LONG);
+    knownOperands.add(TokenTypes.STRING_LITERAL);
+    
+    knownElements.add("3.3");
+    knownElements.add("1.999");
+    knownElements.add("1");
+    knownElements.add("4294967296");
+    knownElements.add("hello");
+    knownElements.add("abc");
+    
+    int tokenType = knownOperands.get(token);
+    String element = knownElements.get(token);
+    
+    Mockito.when(astMock.getType()).thenReturn(tokenType);
+    Mockito.when(astMock.getText()).thenReturn(element);
+    expressionCounter.visitToken(astMock);
     assertEquals(6, expressionCounter.getNumUniqueOperands());
   }
 }
