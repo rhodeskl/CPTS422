@@ -8,7 +8,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class ExpressionCounter extends AbstractCheck {
+public class ExpressionCounter extends AbstractCheck implements IExpressionCounter {
   
   private int numExpressions;
   private int numOperators;
