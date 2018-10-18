@@ -3,12 +3,12 @@ package net.sf.eclipsecs.sample.checks;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+//import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class ExpressionCounter extends AbstractCheck implements IExpressionCounter {
+public class ExpressionCounter extends AbstractCheck {
   
   private int numExpressions;
   private int numOperators;
@@ -80,12 +80,12 @@ public class ExpressionCounter extends AbstractCheck implements IExpressionCount
                       TokenTypes.LITERAL_SYNCHRONIZED, TokenTypes.LITERAL_THIS, TokenTypes.LITERAL_THROW, TokenTypes.LITERAL_THROWS,
                       TokenTypes.LITERAL_TRANSIENT, TokenTypes.LITERAL_TRUE, TokenTypes.LITERAL_TRY, TokenTypes.LITERAL_VOID,
                       TokenTypes.LITERAL_VOLATILE, TokenTypes.LITERAL_WHILE, TokenTypes.LNOT, TokenTypes.LOR, TokenTypes.LPAREN, 
-                      TokenTypes.LE, TokenTypes.METHOD_CALL, TokenTypes.MINUS, TokenTypes.MINUS_ASSIGN, TokenTypes.MOD, 
-                      TokenTypes.MOD_ASSIGN, TokenTypes.NOT_EQUAL, TokenTypes.NUM_DOUBLE, TokenTypes.NUM_FLOAT, TokenTypes.NUM_INT, 
-                      TokenTypes.NUM_LONG, TokenTypes.PLUS, TokenTypes.PLUS_ASSIGN,TokenTypes.POST_DEC, TokenTypes.POST_INC, 
-                      TokenTypes.QUESTION, TokenTypes.RBRACK, TokenTypes.RCURLY, TokenTypes.RPAREN, TokenTypes.SEMI, TokenTypes.SL,
-                      TokenTypes.SL_ASSIGN, TokenTypes.SR, TokenTypes.SR_ASSIGN, TokenTypes.STAR_ASSIGN, TokenTypes.UNARY_MINUS,
-                      TokenTypes.UNARY_PLUS, TokenTypes.IDENT, TokenTypes.CHAR_LITERAL, TokenTypes.STRING_LITERAL};
+                      TokenTypes.METHOD_CALL, TokenTypes.MINUS, TokenTypes.MINUS_ASSIGN, TokenTypes.MOD, TokenTypes.MOD_ASSIGN, 
+                      TokenTypes.NOT_EQUAL, TokenTypes.NUM_DOUBLE, TokenTypes.NUM_FLOAT, TokenTypes.NUM_INT, TokenTypes.NUM_LONG, 
+                      TokenTypes.PLUS, TokenTypes.PLUS_ASSIGN,TokenTypes.POST_DEC, TokenTypes.POST_INC, TokenTypes.QUESTION, 
+                      TokenTypes.RBRACK, TokenTypes.RCURLY, TokenTypes.RPAREN, TokenTypes.SEMI, TokenTypes.SL, TokenTypes.SL_ASSIGN, 
+                      TokenTypes.SR, TokenTypes.SR_ASSIGN, TokenTypes.STAR, TokenTypes.STAR_ASSIGN, TokenTypes.UNARY_MINUS, TokenTypes.UNARY_PLUS, 
+                      TokenTypes.IDENT, TokenTypes.CHAR_LITERAL, TokenTypes.STRING_LITERAL};
   }
 
   @Override
@@ -122,12 +122,12 @@ public class ExpressionCounter extends AbstractCheck implements IExpressionCount
             || ast.getType() == TokenTypes.LITERAL_THROW || ast.getType() == TokenTypes.LITERAL_THROWS || ast.getType() == TokenTypes.LITERAL_TRANSIENT
             || ast.getType() == TokenTypes.LITERAL_TRUE || ast.getType() == TokenTypes.LITERAL_TRY || ast.getType() == TokenTypes.LITERAL_VOID 
             || ast.getType() == TokenTypes.LITERAL_VOLATILE || ast.getType() == TokenTypes.LITERAL_WHILE || ast.getType() == TokenTypes.LNOT 
-            || ast.getType() == TokenTypes.LOR || ast.getType() == TokenTypes.LPAREN || ast.getType() == TokenTypes.LE || ast.getType() == TokenTypes.METHOD_CALL
-            || ast.getType() == TokenTypes.MINUS || ast.getType() == TokenTypes.MINUS_ASSIGN || ast.getType() == TokenTypes.MOD || ast.getType() == TokenTypes.MOD_ASSIGN
-            || ast.getType() == TokenTypes.NOT_EQUAL|| ast.getType() == TokenTypes.PLUS || ast.getType() == TokenTypes.PLUS_ASSIGN || ast.getType() == TokenTypes.POST_DEC
-            || ast.getType() == TokenTypes.POST_INC || ast.getType() == TokenTypes.QUESTION || ast.getType() == TokenTypes.RBRACK || ast.getType() == TokenTypes.RCURLY
-            || ast.getType() == TokenTypes.RPAREN || ast.getType() == TokenTypes.SEMI || ast.getType() == TokenTypes.SL || ast.getType() == TokenTypes.SL_ASSIGN
-            || ast.getType() == TokenTypes.SR || ast.getType() == TokenTypes.SR_ASSIGN || ast.getType() == TokenTypes.STAR_ASSIGN || ast.getType() == TokenTypes.UNARY_MINUS
+            || ast.getType() == TokenTypes.LOR || ast.getType() == TokenTypes.LPAREN || ast.getType() == TokenTypes.METHOD_CALL || ast.getType() == TokenTypes.MINUS 
+            || ast.getType() == TokenTypes.MINUS_ASSIGN || ast.getType() == TokenTypes.MOD || ast.getType() == TokenTypes.MOD_ASSIGN || ast.getType() == TokenTypes.NOT_EQUAL
+            || ast.getType() == TokenTypes.PLUS || ast.getType() == TokenTypes.PLUS_ASSIGN || ast.getType() == TokenTypes.POST_DEC || ast.getType() == TokenTypes.POST_INC 
+            || ast.getType() == TokenTypes.QUESTION || ast.getType() == TokenTypes.RBRACK || ast.getType() == TokenTypes.RCURLY || ast.getType() == TokenTypes.RPAREN 
+            || ast.getType() == TokenTypes.SEMI || ast.getType() == TokenTypes.SL || ast.getType() == TokenTypes.SL_ASSIGN || ast.getType() == TokenTypes.SR 
+            || ast.getType() == TokenTypes.SR_ASSIGN || ast.getType() == TokenTypes.STAR || ast.getType() == TokenTypes.STAR_ASSIGN || ast.getType() == TokenTypes.UNARY_MINUS 
             || ast.getType() == TokenTypes.UNARY_PLUS) {
       numOperators++;
       if (!foundOperators.contains(ast.getType())) {
@@ -155,3 +155,4 @@ public class ExpressionCounter extends AbstractCheck implements IExpressionCount
       log(rootAST, "numberUniqueOperands", numUniqueOperands);
     }
 }
+
