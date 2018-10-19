@@ -155,4 +155,21 @@ public class HalsteadMetricsTest{
 		assertEquals(8.0, mockHalstead.getHalsteadEffort());
 	}
 	
+	@Test
+	public void testBeginTree() {
+    mockHalstead.beginTree(astMock);
+	  assertEquals(0, mockHalstead.getHalsteadLength());
+	  assertEquals(0, mockHalstead.getHalsteadVocab());
+	  assertEquals(0.0, mockHalstead.getHalsteadVolume());
+	  assertEquals(0.0, mockHalstead.getHalsteadDifficulty());
+	  assertEquals(0.0, mockHalstead.getHalsteadEffort());
+	  
+	  Mockito.verify(mockExpression).beginTree(astMock);
+  }
+	
+	@Test
+	public void testVisitToken() {
+    mockHalstead.visitToken(astMock);
+    Mockito.verify(mockExpression).visitToken(astMock);
+  }
 }
