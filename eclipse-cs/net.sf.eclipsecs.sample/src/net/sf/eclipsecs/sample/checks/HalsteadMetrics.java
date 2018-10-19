@@ -12,16 +12,20 @@ public class HalsteadMetrics extends AbstractCheck{
 	private double hEffort;
 	private ExpressionCounter expression_counter;
 	
-	public HalsteadMetrics(IExpressionCounter counter)
+	public HalsteadMetrics()
 	{
 	  this.hLength = 0;
 	  this.hVocab = 0;
 	  this.hVolume = 0;
 	  this.hDifficulty = 0;
 	  this.hEffort = 0;
-	  this.expression_counter = counter == null ? new ExpressionCounter() : counter;
+	  this.expression_counter = new ExpressionCounter();
 	}
 	
+	public void setExpressionCounter(ExpressionCounter counter)
+	{
+		this.expression_counter = counter;
+	}
 	//Calculate all the Halstead values
 	public void setAllHalstead() {
 	  setHalsteadLength();
