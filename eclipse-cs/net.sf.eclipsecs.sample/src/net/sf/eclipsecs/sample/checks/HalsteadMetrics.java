@@ -22,10 +22,7 @@ public class HalsteadMetrics extends AbstractCheck{
 	  this.expression_counter = new ExpressionCounter();
 	}
 	
-	public void setExpressionCounter(ExpressionCounter counter)
-	{
-		this.expression_counter = counter;
-	}
+	
 	//Calculate all the Halstead values
 	public void setAllHalstead() {
 	  setHalsteadLength();
