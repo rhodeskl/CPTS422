@@ -491,7 +491,7 @@ public class ExpressionCounterTest {
     assertEquals(98, expressionCounter.getNumUniqueOperators());
     
     // visit token should not increment numUniqueOperands
-    token = random.nextInt(6);
+    token = random.nextInt(5);
     List<Integer> knownOperands = new ArrayList<>();
     List<String> knownElements = new ArrayList<>();
     
@@ -499,6 +499,7 @@ public class ExpressionCounterTest {
     knownOperands.add(TokenTypes.NUM_FLOAT);
     knownOperands.add(TokenTypes.NUM_INT);
     knownOperands.add(TokenTypes.NUM_LONG);
+    knownOperands.add(TokenTypes.IDENT);
     knownOperands.add(TokenTypes.STRING_LITERAL);
     
     knownElements.add("3.3");
