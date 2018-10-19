@@ -28,7 +28,7 @@ public class HalsteadMetricsTests{
 	@Before
 	public void Setup()
 	{
-		mockedCounter = PowerMockito.mock(ExpressionCounters);
+		mockedCounter = PowerMockito.mock(ExpressionCounter);
 	} 
 	
 	@Test
