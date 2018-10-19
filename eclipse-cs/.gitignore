@@ -2,3 +2,4 @@ net.sf.eclipsecs.doc/docs/
 */bin/
 */target/
 /.metadata/
+.classpath
