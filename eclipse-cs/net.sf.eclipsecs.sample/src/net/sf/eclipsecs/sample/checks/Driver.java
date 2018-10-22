@@ -140,4 +140,5 @@ public class Driver
       variableCounter.visitToken(detailAST);
       return variableCounter.getNumVariables();
     }
+    
 }
