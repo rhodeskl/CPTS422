@@ -168,204 +168,494 @@ public class ExpressionCounterTest {
     expressionCounter.visitToken(astMock);
     assertEquals(1, expressionCounter.getNumExpressions());
     
-    // visit token should increment numOperators and numUniqueOperators by # if the token type is an operator 
+    // visit token should increment numOperators and numUniqueOperators by 1 after each visit for each token type 
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.ABSTRACT);
     expressionCounter.visitToken(astMock);
+    assertEquals(1, expressionCounter.getNumOperators());
+    assertEquals(1, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.ASSIGN);
     expressionCounter.visitToken(astMock);
+    assertEquals(2, expressionCounter.getNumOperators());
+    assertEquals(2, expressionCounter.getNumOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.BAND);
     expressionCounter.visitToken(astMock);
+    assertEquals(3, expressionCounter.getNumOperators());
+    assertEquals(3, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.BAND_ASSIGN);
     expressionCounter.visitToken(astMock);
+    assertEquals(4, expressionCounter.getNumOperators());
+    assertEquals(4, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.BNOT);
     expressionCounter.visitToken(astMock);
+    assertEquals(5, expressionCounter.getNumOperators());
+    assertEquals(5, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.BOR);
     expressionCounter.visitToken(astMock);
+    assertEquals(6, expressionCounter.getNumOperators());
+    assertEquals(6, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.BOR_ASSIGN);
     expressionCounter.visitToken(astMock);
+    assertEquals(7, expressionCounter.getNumOperators());
+    assertEquals(7, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.BSR);
     expressionCounter.visitToken(astMock);
+    assertEquals(8, expressionCounter.getNumOperators());
+    assertEquals(8, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.BSR_ASSIGN);
     expressionCounter.visitToken(astMock);
+    assertEquals(9, expressionCounter.getNumOperators());
+    assertEquals(9, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.BXOR);
     expressionCounter.visitToken(astMock);
+    assertEquals(10, expressionCounter.getNumOperators());
+    assertEquals(10, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.BXOR_ASSIGN);
     expressionCounter.visitToken(astMock);
+    assertEquals(11, expressionCounter.getNumOperators());
+    assertEquals(11, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.COLON);
     expressionCounter.visitToken(astMock);
+    assertEquals(12, expressionCounter.getNumOperators());
+    assertEquals(12, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.COMMA);
     expressionCounter.visitToken(astMock);
+    assertEquals(13, expressionCounter.getNumOperators());
+    assertEquals(13, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.DEC);
     expressionCounter.visitToken(astMock);
+    assertEquals(14, expressionCounter.getNumOperators());
+    assertEquals(14, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.DIV);
     expressionCounter.visitToken(astMock);
+    assertEquals(15, expressionCounter.getNumOperators());
+    assertEquals(15, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.DIV_ASSIGN);
     expressionCounter.visitToken(astMock);
+    assertEquals(16, expressionCounter.getNumOperators());
+    assertEquals(16, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.DO_WHILE);
     expressionCounter.visitToken(astMock);
+    assertEquals(17, expressionCounter.getNumOperators());
+    assertEquals(17, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.DOT);
     expressionCounter.visitToken(astMock);
+    assertEquals(18, expressionCounter.getNumOperators());
+    assertEquals(18, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.ENUM);
     expressionCounter.visitToken(astMock);
+    assertEquals(19, expressionCounter.getNumOperators());
+    assertEquals(19, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.EQUAL);
     expressionCounter.visitToken(astMock);
+    assertEquals(20, expressionCounter.getNumOperators());
+    assertEquals(20, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.FINAL);
     expressionCounter.visitToken(astMock);
+    assertEquals(21, expressionCounter.getNumOperators());
+    assertEquals(21, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.GE);
     expressionCounter.visitToken(astMock);
+    assertEquals(22, expressionCounter.getNumOperators());
+    assertEquals(22, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.GT);
     expressionCounter.visitToken(astMock);
+    assertEquals(23, expressionCounter.getNumOperators());
+    assertEquals(23, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.IMPORT);
     expressionCounter.visitToken(astMock);
+    assertEquals(24, expressionCounter.getNumOperators());
+    assertEquals(24, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.INC);
     expressionCounter.visitToken(astMock);
+    assertEquals(25, expressionCounter.getNumOperators());
+    assertEquals(25, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.INDEX_OP);
     expressionCounter.visitToken(astMock);
+    assertEquals(26, expressionCounter.getNumOperators());
+    assertEquals(26, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LAND);
     expressionCounter.visitToken(astMock);
+    assertEquals(27, expressionCounter.getNumOperators());
+    assertEquals(27, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LCURLY);
     expressionCounter.visitToken(astMock);
+    assertEquals(28, expressionCounter.getNumOperators());
+    assertEquals(28, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LE);
     expressionCounter.visitToken(astMock);
+    assertEquals(29, expressionCounter.getNumOperators());
+    assertEquals(29, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_ASSERT);
     expressionCounter.visitToken(astMock);
+    assertEquals(30, expressionCounter.getNumOperators());
+    assertEquals(30, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_BOOLEAN);
     expressionCounter.visitToken(astMock);
+    assertEquals(31, expressionCounter.getNumOperators());
+    assertEquals(31, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_BREAK);
     expressionCounter.visitToken(astMock);
+    assertEquals(32, expressionCounter.getNumOperators());
+    assertEquals(32, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_BYTE);
     expressionCounter.visitToken(astMock);
+    assertEquals(33, expressionCounter.getNumOperators());
+    assertEquals(33, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_CASE);
     expressionCounter.visitToken(astMock);
+    assertEquals(34, expressionCounter.getNumOperators());
+    assertEquals(34, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_CATCH);
     expressionCounter.visitToken(astMock);
+    assertEquals(35, expressionCounter.getNumOperators());
+    assertEquals(35, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_CHAR);
     expressionCounter.visitToken(astMock);
+    assertEquals(36, expressionCounter.getNumOperators());
+    assertEquals(36, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_CLASS);
     expressionCounter.visitToken(astMock);
+    assertEquals(37, expressionCounter.getNumOperators());
+    assertEquals(37, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_CONTINUE);
     expressionCounter.visitToken(astMock);
+    assertEquals(38, expressionCounter.getNumOperators());
+    assertEquals(38, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_DEFAULT);
     expressionCounter.visitToken(astMock);
+    assertEquals(39, expressionCounter.getNumOperators());
+    assertEquals(39, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_DO);
     expressionCounter.visitToken(astMock);
+    assertEquals(40, expressionCounter.getNumOperators());
+    assertEquals(40, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_DOUBLE);
     expressionCounter.visitToken(astMock);
+    assertEquals(41, expressionCounter.getNumOperators());
+    assertEquals(41, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_ELSE);
     expressionCounter.visitToken(astMock);
+    assertEquals(42, expressionCounter.getNumOperators());
+    assertEquals(42, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_FALSE);
     expressionCounter.visitToken(astMock);
+    assertEquals(43, expressionCounter.getNumOperators());
+    assertEquals(43, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_FINALLY);
     expressionCounter.visitToken(astMock);
+    assertEquals(44, expressionCounter.getNumOperators());
+    assertEquals(44, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_FLOAT);
     expressionCounter.visitToken(astMock);
+    assertEquals(45, expressionCounter.getNumOperators());
+    assertEquals(45, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_FOR);
     expressionCounter.visitToken(astMock);
+    assertEquals(46, expressionCounter.getNumOperators());
+    assertEquals(46, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_IF);
     expressionCounter.visitToken(astMock);
+    assertEquals(47, expressionCounter.getNumOperators());
+    assertEquals(47, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_INSTANCEOF);
     expressionCounter.visitToken(astMock);
+    assertEquals(48, expressionCounter.getNumOperators());
+    assertEquals(48, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_INT);
     expressionCounter.visitToken(astMock);
+    assertEquals(49, expressionCounter.getNumOperators());
+    assertEquals(49, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_INTERFACE);
     expressionCounter.visitToken(astMock);
+    assertEquals(50, expressionCounter.getNumOperators());
+    assertEquals(50, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_LONG);
     expressionCounter.visitToken(astMock);
+    assertEquals(51, expressionCounter.getNumOperators());
+    assertEquals(51, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_NATIVE);
     expressionCounter.visitToken(astMock);
+    assertEquals(52, expressionCounter.getNumOperators());
+    assertEquals(52, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_NEW);
     expressionCounter.visitToken(astMock);
+    assertEquals(53, expressionCounter.getNumOperators());
+    assertEquals(53, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_NULL);
     expressionCounter.visitToken(astMock);
+    assertEquals(54, expressionCounter.getNumOperators());
+    assertEquals(54, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_PRIVATE);
     expressionCounter.visitToken(astMock);
+    assertEquals(55, expressionCounter.getNumOperators());
+    assertEquals(55, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_PROTECTED);
     expressionCounter.visitToken(astMock);
+    assertEquals(56, expressionCounter.getNumOperators());
+    assertEquals(56, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_PUBLIC);
     expressionCounter.visitToken(astMock);
+    assertEquals(57, expressionCounter.getNumOperators());
+    assertEquals(57, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_RETURN);
     expressionCounter.visitToken(astMock);
+    assertEquals(58, expressionCounter.getNumOperators());
+    assertEquals(58, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_SHORT);
     expressionCounter.visitToken(astMock);
+    assertEquals(59, expressionCounter.getNumOperators());
+    assertEquals(59, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_STATIC);
     expressionCounter.visitToken(astMock);
+    assertEquals(60, expressionCounter.getNumOperators());
+    assertEquals(60, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_SUPER);
     expressionCounter.visitToken(astMock);
+    assertEquals(61, expressionCounter.getNumOperators());
+    assertEquals(61, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_SWITCH);
     expressionCounter.visitToken(astMock);
+    assertEquals(62, expressionCounter.getNumOperators());
+    assertEquals(62, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_SYNCHRONIZED);
     expressionCounter.visitToken(astMock);
+    assertEquals(63, expressionCounter.getNumOperators());
+    assertEquals(63, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_THIS);
     expressionCounter.visitToken(astMock);
+    assertEquals(64, expressionCounter.getNumOperators());
+    assertEquals(64, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_THROW);
     expressionCounter.visitToken(astMock);
+    assertEquals(65, expressionCounter.getNumOperators());
+    assertEquals(65, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_THROWS);
     expressionCounter.visitToken(astMock);
+    assertEquals(66, expressionCounter.getNumOperators());
+    assertEquals(66, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_TRANSIENT);
     expressionCounter.visitToken(astMock);
+    assertEquals(67, expressionCounter.getNumOperators());
+    assertEquals(67, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_TRUE);
     expressionCounter.visitToken(astMock);
+    assertEquals(68, expressionCounter.getNumOperators());
+    assertEquals(68, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_TRY);
     expressionCounter.visitToken(astMock);
+    assertEquals(69, expressionCounter.getNumOperators());
+    assertEquals(69, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_VOID);
     expressionCounter.visitToken(astMock);
+    assertEquals(70, expressionCounter.getNumOperators());
+    assertEquals(70, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_VOLATILE);
     expressionCounter.visitToken(astMock);
+    assertEquals(71, expressionCounter.getNumOperators());
+    assertEquals(71, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_WHILE);
     expressionCounter.visitToken(astMock);
+    assertEquals(72, expressionCounter.getNumOperators());
+    assertEquals(72, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LNOT);
     expressionCounter.visitToken(astMock);
+    assertEquals(73, expressionCounter.getNumOperators());
+    assertEquals(73, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LOR);
     expressionCounter.visitToken(astMock);
+    assertEquals(74, expressionCounter.getNumOperators());
+    assertEquals(74, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LPAREN);
     expressionCounter.visitToken(astMock);
+    assertEquals(75, expressionCounter.getNumOperators());
+    assertEquals(75, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.METHOD_CALL);
     expressionCounter.visitToken(astMock);
+    assertEquals(76, expressionCounter.getNumOperators());
+    assertEquals(76, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.MINUS);
     expressionCounter.visitToken(astMock);
+    assertEquals(77, expressionCounter.getNumOperators());
+    assertEquals(77, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.MINUS_ASSIGN);
     expressionCounter.visitToken(astMock);
+    assertEquals(78, expressionCounter.getNumOperators());
+    assertEquals(78, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.MOD);
     expressionCounter.visitToken(astMock);
+    assertEquals(79, expressionCounter.getNumOperators());
+    assertEquals(79, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.MOD_ASSIGN);
     expressionCounter.visitToken(astMock);
+    assertEquals(80, expressionCounter.getNumOperators());
+    assertEquals(80, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.NOT_EQUAL);
     expressionCounter.visitToken(astMock);
+    assertEquals(81, expressionCounter.getNumOperators());
+    assertEquals(81, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.PLUS);
     expressionCounter.visitToken(astMock);
+    assertEquals(82, expressionCounter.getNumOperators());
+    assertEquals(82, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.PLUS_ASSIGN);
     expressionCounter.visitToken(astMock);
+    assertEquals(83, expressionCounter.getNumOperators());
+    assertEquals(83, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.POST_DEC);
     expressionCounter.visitToken(astMock);
+    assertEquals(84, expressionCounter.getNumOperators());
+    assertEquals(84, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.POST_INC);
     expressionCounter.visitToken(astMock);
+    assertEquals(85, expressionCounter.getNumOperators());
+    assertEquals(85, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.QUESTION);
     expressionCounter.visitToken(astMock);
+    assertEquals(86, expressionCounter.getNumOperators());
+    assertEquals(86, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.RBRACK);
     expressionCounter.visitToken(astMock);
+    assertEquals(87, expressionCounter.getNumOperators());
+    assertEquals(87, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.RCURLY);
     expressionCounter.visitToken(astMock);
+    assertEquals(88, expressionCounter.getNumOperators());
+    assertEquals(88, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.RPAREN);
     expressionCounter.visitToken(astMock);
+    assertEquals(89, expressionCounter.getNumOperators());
+    assertEquals(89, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.SEMI);
     expressionCounter.visitToken(astMock);
+    assertEquals(90, expressionCounter.getNumOperators());
+    assertEquals(90, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.SL);
     expressionCounter.visitToken(astMock);
+    assertEquals(91, expressionCounter.getNumOperators());
+    assertEquals(91, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.SL_ASSIGN);
     expressionCounter.visitToken(astMock);
+    assertEquals(92, expressionCounter.getNumOperators());
+    assertEquals(92, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.SR);
     expressionCounter.visitToken(astMock);
+    assertEquals(93, expressionCounter.getNumOperators());
+    assertEquals(93, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.SR_ASSIGN);
     expressionCounter.visitToken(astMock);
+    assertEquals(94, expressionCounter.getNumOperators());
+    assertEquals(94, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.STAR);
     expressionCounter.visitToken(astMock);
+    assertEquals(95, expressionCounter.getNumOperators());
+    assertEquals(95, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.STAR_ASSIGN);
     expressionCounter.visitToken(astMock);
+    assertEquals(96, expressionCounter.getNumOperators());
+    assertEquals(96, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.UNARY_MINUS);
     expressionCounter.visitToken(astMock);
+    assertEquals(97, expressionCounter.getNumOperators());
+    assertEquals(97, expressionCounter.getNumUniqueOperators());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.UNARY_PLUS);
     expressionCounter.visitToken(astMock);
-    
     assertEquals(98, expressionCounter.getNumOperators());
     assertEquals(98, expressionCounter.getNumUniqueOperators());
     
@@ -373,22 +663,36 @@ public class ExpressionCounterTest {
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.NUM_DOUBLE);
     Mockito.when(astMock.getText()).thenReturn("3.3");
     expressionCounter.visitToken(astMock);
+    assertEquals(1, expressionCounter.getNumOperands());
+    assertEquals(1, expressionCounter.getNumUniqueOperands());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.NUM_FLOAT);
     Mockito.when(astMock.getText()).thenReturn("1.999");
     expressionCounter.visitToken(astMock);
+    assertEquals(2, expressionCounter.getNumOperands());
+    assertEquals(2, expressionCounter.getNumUniqueOperands());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.NUM_INT);
     Mockito.when(astMock.getText()).thenReturn("1");
     expressionCounter.visitToken(astMock);
+    assertEquals(3, expressionCounter.getNumOperands());
+    assertEquals(3, expressionCounter.getNumUniqueOperands());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.NUM_LONG);
     Mockito.when(astMock.getText()).thenReturn("4294967296");
     expressionCounter.visitToken(astMock);
+    assertEquals(4, expressionCounter.getNumOperands());
+    assertEquals(4, expressionCounter.getNumUniqueOperands());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.IDENT);
     Mockito.when(astMock.getText()).thenReturn("hello");
     expressionCounter.visitToken(astMock);
+    assertEquals(5, expressionCounter.getNumOperands());
+    assertEquals(5, expressionCounter.getNumUniqueOperands());
+    
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.STRING_LITERAL);
     Mockito.when(astMock.getText()).thenReturn("abc");
     expressionCounter.visitToken(astMock);
-    
     assertEquals(6, expressionCounter.getNumOperands());
     assertEquals(6, expressionCounter.getNumUniqueOperands());
     
