@@ -172,6 +172,35 @@ public class DriverIntegrationTest {
    * real classes: CastCounter, CommentCounter, ExpressionCounter, HalsteadMetrics, LoopingStatementCounter, VariableCounter
    */
   public void loopingStatementCounterIntegration() {
+    Driver driver = new Driver(castCounter, commentCounter, expressionCounter, halsteadMetrics, loopingStatementCounter, maintainabilityIndexMock, methodCounterMock, variableCounter);
+    //if the driver passes a DetailAST that isn't type variable def to the run variable counter function, then the function should return 0 because the variable counter's number of variables should still be its default value
+    boolean isNotAcceptableToken = false;
+    int token = -1;
+    Random random = new Random();
+    while(isNotAcceptableToken == false) { //this loop will generate a random token that is not a VARIABLE_DEF
+      token = random.nextInt(TokenTypes.WILDCARD_TYPE);
+      if(TokenTypes.LITERAL_FOR != token && TokenTypes.LITERAL_WHILE != token && TokenTypes.LITERAL_DO != token) {
+        isNotAcceptableToken = true;
+      }
+    }
+    
+    Mockito.when(astMock.getType()).thenReturn(token);
+    int result = driver.runLoopingStatementCounter(astMock);
+    assertEquals(0, result);
+    
+    //if the driver passes a DetailAST of type Literal_For, Literal_While, Literal_Do to the run looping counter function, then the function should return 1 because the variable counter's number of variables should be incremented
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_FOR);
+    result = driver.runLoopingStatementCounter(astMock);
+    assertEquals(1, result);
+    //System.out.println(result);
+ 
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_WHILE);
+    result = driver.runLoopingStatementCounter(astMock);
+    assertEquals(1, result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_DO);
+    result = driver.runLoopingStatementCounter(astMock);
+    assertEquals(1, result);
     
   }
   
@@ -191,6 +220,61 @@ public class DriverIntegrationTest {
    */
   public void methodCounterIntegration() {
     
+    Driver driver = new Driver(castCounter, commentCounter, expressionCounter, halsteadMetrics, loopingStatementCounter, maintainabilityIndex, methodCounter, variableCounter);
+    //if the driver passes a DetailAST that isn't type variable def to the run variable counter function, then the function should return 0 because the variable counter's number of variables should still be its default value
+    boolean isNotAcceptableToken = false;
+    int token = -1;
+    Random random = new Random();
+    while(isNotAcceptableToken == false) { //this loop will generate a random token that is not a VARIABLE_DEF
+      token = random.nextInt(TokenTypes.WILDCARD_TYPE);
+      if(TokenTypes.METHOD_CALL != token) {
+        isNotAcceptableToken = true;
+      }
+    }
+    
+    Mockito.when(astMock.getType()).thenReturn(token);
+    int[] result = driver.runMethodCounter(astMock);
+    //System.out.println(result[0]);
+    //System.out.println(result[1]);
+    int[] expected1 = {0, 0};
+    boolean isEqual = Arrays.equals(expected1, result);
+    assertEquals(true, isEqual);
+    
+    isNotAcceptableToken = false;
+    while(isNotAcceptableToken == false) { //this loop will generate a random token that is not a VARIABLE_DEF
+      token = random.nextInt(TokenTypes.WILDCARD_TYPE);
+      if(TokenTypes.DOT != token) {
+        isNotAcceptableToken = true;
+      }
+    }
+    DetailAST astChildMock = PowerMockito.mock(DetailAST.class);
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.METHOD_CALL);
+    Mockito.when(astMock.getFirstChild()).thenReturn(astChildMock);
+    Mockito.when(astChildMock.getType()).thenReturn(token);
+    
+    result = driver.runMethodCounter(astMock);
+    //System.out.println(result[0]);
+    //System.out.println(result[1]);
+    int[] expected2 = {0, 1};
+    isEqual = Arrays.equals(expected2, result);
+    assertEquals(true, isEqual);
+    
+    //////////////////////////
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.METHOD_CALL);  
+    result = driver.runMethodCounter(astMock);
+    int[] expected3 = {0, 1};
+    isEqual = Arrays.equals(expected3, result);
+    assertEquals(true, isEqual);
+    
+  
+    Mockito.when(astMock.getFirstChild()).thenReturn(astChildMock);
+    Mockito.when(astChildMock.getType()).thenReturn(TokenTypes.DOT);
+    result = driver.runMethodCounter(astMock);
+    int[] expected4 = {1, 0};
+    isEqual = Arrays.equals(expected4, result);
+    assertEquals(true, isEqual);
+    
+
   }
   
 

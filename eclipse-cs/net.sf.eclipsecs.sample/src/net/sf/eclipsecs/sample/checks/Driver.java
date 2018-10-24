@@ -129,7 +129,7 @@ public class Driver
     public int[] runMethodCounter(DetailAST detailAST) {
       methodCounter.beginTree(detailAST);
       methodCounter.visitToken(detailAST);
-      int[] results = new int[3];
+      int[] results = new int[2];
       results[0] = methodCounter.getNumExternalReferences();
       results[1] = methodCounter.getNumLocalReferences();
       return results;
