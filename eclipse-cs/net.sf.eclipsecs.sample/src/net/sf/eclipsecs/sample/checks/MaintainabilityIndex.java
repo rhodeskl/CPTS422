@@ -34,7 +34,8 @@ public class MaintainabilityIndex extends AbstractCheck{
              (50 * Math.sin(Math.sqrt(2.4 * cm)));
   }
   
-  public double getMaintainabilityIndex() {
+  public double getMaintainabilityIndex() 
+  {
     return maintainability_index;
   }
   

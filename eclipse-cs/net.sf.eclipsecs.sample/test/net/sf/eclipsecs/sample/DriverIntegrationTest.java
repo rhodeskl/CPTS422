@@ -954,7 +954,627 @@ public class DriverIntegrationTest {
    * stubs: LoopingStatementCounter, MaintainabilityIndex, MethodCounter
    * real classes: CastCounter, CommentCounter, ExpressionCounter, HalsteadMetrics, VariableCounter
    */
-  public void halsteadMetricsIntegration() {
+  public void halsteadMetricsIntegration() 
+  {
+    Driver driver = new Driver(castCounter, commentCounter, expressionCounter, halsteadMetrics, loopingStatementCounter, maintainabilityIndexMock, methodCounterMock, variableCounter);
+    //if the driver passes a DetailAST that isn't type variable def to the run variable counter function, then the function should return 0 because the variable counter's number of variables should still be its default value
+    boolean isNotAcceptableToken = false;
+    int token = 1;
+    Random random = new Random();
+    while (isNotAcceptableToken == false) //this loop will generate a random token that is not a VARIABLE_DEF
+    {
+      token = random.nextInt(TokenTypes.WILDCARD_TYPE);
+      if (TokenTypes.TYPECAST != token)
+      {
+        isNotAcceptableToken = true;
+      }
+    }
+    /*
+      results[0] = halsteadMetrics.getHalsteadLength();
+      results[1] = halsteadMetrics.getHalsteadVocab();
+      results[2] = halsteadMetrics.getHalsteadVolume();
+      results[3] = halsteadMetrics.getHalsteadDifficulty();
+      results[4] = halsteadMetrics.getHalsteadEffort();*/
+    
+    Mockito.when(astMock.getType()).thenReturn(token);
+    double[] result = driver.runHalsteadMetrics(astMock);
+    double[] expected = {0.0,0.0,0.0,0.0,0.0,0.0};
+    boolean isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.EXPR);
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.ABSTRACT);
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.ASSIGN);
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.BAND);
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.BAND_ASSIGN);
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.BNOT);
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.BOR);
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.BOR_ASSIGN);
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.BSR);
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.BSR_ASSIGN);
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.BXOR);
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.BXOR_ASSIGN);
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.COLON);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.COMMA);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.DEC);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.DIV);   
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.DIV_ASSIGN);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.DO_WHILE);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.DOT);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.ENUM);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.EQUAL);   
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.FINAL);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.GE);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.GT);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.IMPORT);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.INC);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.INDEX_OP);
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LAND);   
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LCURLY);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LE);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_ASSERT);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_BOOLEAN);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_BREAK);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_BYTE);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_CASE);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_CATCH);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_CHAR);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_CLASS);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_CONTINUE);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_DEFAULT);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_DO);   
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_DOUBLE);   
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_ELSE);   
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_FALSE);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_FINALLY);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_FLOAT);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_FOR);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_IF);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_INSTANCEOF);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_INT);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_INTERFACE);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_LONG);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_NATIVE);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_NEW);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_NULL);   
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_PRIVATE);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_PROTECTED);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_PUBLIC);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_RETURN);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_SHORT);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_STATIC);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_SUPER);   
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_SWITCH);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_SYNCHRONIZED);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_THIS);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_THROW);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_THROWS);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_TRANSIENT);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_TRUE);
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_TRY);   
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_VOID);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_VOLATILE);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_WHILE);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LNOT);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LOR);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LPAREN);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.METHOD_CALL);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.MINUS);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.MINUS_ASSIGN);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.MOD);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.MOD_ASSIGN);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.NOT_EQUAL);
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.PLUS);   
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.PLUS_ASSIGN);  
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.POST_DEC);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.POST_INC);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.QUESTION);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.RBRACK);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.RCURLY);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.RPAREN);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.SEMI);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.SL);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.SL_ASSIGN);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.SR);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.SR_ASSIGN);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.STAR);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.STAR_ASSIGN);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.UNARY_MINUS);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.UNARY_PLUS);    
+    result = driver.runHalsteadMetrics(astMock);
+    expected = new double[]{0.0,0.0,0.0,0.0,0.0,0.0};
+    isEqual = Arrays.equals(expected, result);
+    assertEquals(true, isEqual);
     
   }
   
@@ -1001,8 +1621,423 @@ public class DriverIntegrationTest {
    * stubs: MethodCounter
    * real classes: CastCounter, CommentCounter, ExpressionCounter, HalsteadMetrics, LoopingStatementCounter, MaintainabilityIndex, VariableCounter
    */
-  public void maintainabilityIndexIntegration() {
+  public void maintainabilityIndexIntegration() 
+  {
+    Driver driver = new Driver(castCounter, commentCounter, expressionCounter, halsteadMetrics, loopingStatementCounter, maintainabilityIndexMock, methodCounterMock, variableCounter);
+    //if the driver passes a DetailAST that isn't type variable def to the run variable counter function, then the function should return 0 because the variable counter's number of variables should still be its default value
+    boolean isNotAcceptableToken = false;
+    int token = 1;
+    Random random = new Random();
+    while (isNotAcceptableToken == false) //this loop will generate a random token that is not a VARIABLE_DEF
+    {
+      token = random.nextInt(TokenTypes.WILDCARD_TYPE);
+      if (TokenTypes.TYPECAST != token)
+      {
+        isNotAcceptableToken = true;
+      }
+    }
+
+    Mockito.when(astMock.getType()).thenReturn(token);
+    double result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+   
+    // if the driver passes a DetailAST of type EXPR to the expression counter function, then the expression counter's numExpression should be incremented
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.EXPR);
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0, result);
     
+    // if the driver passes a DetailAST of type operator to the expression counter function, then the expression counter's numOperators and numUniqueOperators should be incremented
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.ABSTRACT);
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.ASSIGN);
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.BAND);
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.BAND_ASSIGN);
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.BNOT);
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.BOR);
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.BOR_ASSIGN);
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.BSR);
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.BSR_ASSIGN);
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.BXOR);
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.BXOR_ASSIGN);
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.COLON);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.COMMA);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.DEC);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.DIV);   
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.DIV_ASSIGN);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.DO_WHILE);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.DOT);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.ENUM);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.EQUAL);   
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.FINAL);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.GE);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.GT);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.IMPORT);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.INC);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.INDEX_OP);
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LAND);   
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LCURLY);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LE);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_ASSERT);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_BOOLEAN);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_BREAK);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_BYTE);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_CASE);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_CATCH);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_CHAR);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_CLASS);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_CONTINUE);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_DEFAULT);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_DO);   
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_DOUBLE);   
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_ELSE);   
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_FALSE);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_FINALLY);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_FLOAT);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_FOR);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_IF);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_INSTANCEOF);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_INT);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_INTERFACE);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_LONG);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_NATIVE);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_NEW);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_NULL);   
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_PRIVATE);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_PROTECTED);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_PUBLIC);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_RETURN);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_SHORT);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_STATIC);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_SUPER);   
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_SWITCH);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_SYNCHRONIZED);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_THIS);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_THROW);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_THROWS);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_TRANSIENT);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_TRUE);
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_TRY);   
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_VOID);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_VOLATILE);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_WHILE);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LNOT);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LOR);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.LPAREN);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.METHOD_CALL);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.MINUS);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.MINUS_ASSIGN);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.MOD);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.MOD_ASSIGN);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.NOT_EQUAL);
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.PLUS);   
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.PLUS_ASSIGN);  
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.POST_DEC);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.POST_INC);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.QUESTION);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.RBRACK);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.RCURLY);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.RPAREN);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.SEMI);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.SL);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.SL_ASSIGN);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.SR);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.SR_ASSIGN);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.STAR);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.STAR_ASSIGN);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.UNARY_MINUS);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0,result);
+    
+    Mockito.when(astMock.getType()).thenReturn(TokenTypes.UNARY_PLUS);    
+    result = driver.runMaintainabilityIndex(astMock);
+    assertEquals(0.0, result);
   }
   
   @Test
