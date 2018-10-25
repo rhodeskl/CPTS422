@@ -21,6 +21,7 @@ public class MaintainabilityIndex extends AbstractCheck{
   }
   
   public void setMaintainabilityIndex() {
+	halstead_metrics.setAllHalstead();
     double v = halstead_metrics.getHalsteadVolume();
     int g = cyclomatic_complexity.getCurrentValue();
     int loc = executable_counter.getNumLines();
@@ -104,7 +105,6 @@ public class MaintainabilityIndex extends AbstractCheck{
   
   @Override
   public void finishTree(DetailAST rootAST) {
-    halstead_metrics.setAllHalstead();
     setMaintainabilityIndex();
     log(rootAST, "maintainability", maintainability_index);
   }
