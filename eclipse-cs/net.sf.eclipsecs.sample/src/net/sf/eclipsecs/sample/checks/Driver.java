@@ -93,7 +93,7 @@ public class Driver
     public int[] runExpressionCounter(DetailAST detailAST) {
       expressionCounter.beginTree(detailAST);
       expressionCounter.visitToken(detailAST);
-      int[] results = new int[6];
+      int[] results = new int[5];
       results[0] = expressionCounter.getNumExpressions();
       results[1] = expressionCounter.getNumOperands();
       results[2] = expressionCounter.getNumOperators();
