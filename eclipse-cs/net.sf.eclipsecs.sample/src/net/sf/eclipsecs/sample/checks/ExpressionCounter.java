@@ -27,6 +27,14 @@ public class ExpressionCounter extends AbstractCheck {
     this.numUniqueOperands = 0;
   }
   
+  public ExpressionCounter(int numexp,int numops,int numopers,int numuop,int numuopers) {
+    this.numExpressions = numexp;
+    this.numOperators = numops;
+    this.numOperands = numopers;
+    this.numUniqueOperators = numuop;
+    this.numUniqueOperands = numuopers;
+  }
+    
   public int getNumExpressions() {
     return numExpressions;
   }

@@ -32,6 +32,10 @@ public class HalsteadMetrics extends AbstractCheck{
 	  setHalsteadEffort();
 	}
 	
+	public boolean setExpressionCounter(ExpressionCounter expC) {
+	  this.expression_counter = expC;
+	  return true;
+	}
 	public int getHalsteadLength() {
 	  return hLength;
 	}
