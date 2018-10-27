@@ -22,10 +22,12 @@ public class MaintainabilityIndex extends AbstractCheck{
   
   public void setMaintainabilityIndex() {
 	halstead_metrics.setAllHalstead();
+	
     double v = halstead_metrics.getHalsteadVolume();
     int g = cyclomatic_complexity.getCurrentValue();
     int loc = executable_counter.getNumLines();
     double cm = (double)comment_counter.getNumComments()/(comment_counter.getNumComments()+loc);
+
     
     //Maintainability Index formula. Have to use log(x)/log(2) to get log base 2.
     maintainability_index = 171 -
