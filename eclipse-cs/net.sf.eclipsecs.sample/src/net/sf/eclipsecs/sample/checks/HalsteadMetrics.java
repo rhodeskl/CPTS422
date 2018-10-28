@@ -68,7 +68,7 @@ public class HalsteadMetrics extends AbstractCheck{
 	}
 	
 	public void setHalsteadDifficulty() {
-		hDifficulty = ((expression_counter.getNumUniqueOperators()/2) * expression_counter.getNumOperands())
+		hDifficulty = (double)((expression_counter.getNumUniqueOperators()/2) * expression_counter.getNumOperands())
 		        /expression_counter.getNumUniqueOperands();
 	}
 	
