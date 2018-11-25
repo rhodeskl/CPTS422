@@ -125,23 +125,6 @@ public class MethodCounterTest {
     assertEquals(1, methodCounter.getNumLocalReferences());
     assertEquals(1, methodCounter.getNumExternalReferences());
     
-    /*
-    //deliverable 3 analysis test case 5
-    Mockito.when(astMock.getType()).thenReturn(TokenTypes.METHOD_CALL);
-    Mockito.when(astMock.getFirstChild()).thenReturn(null);
-    methodCounter.visitToken(astMock);
-    
-    assertEquals(2, methodCounter.getNumLocalReferences());
-    assertEquals(1, methodCounter.getNumExternalReferences());
-    
-    //deliverable 3 analysis test case 6
-    token = getRandomizedToken(TokenTypes.METHOD_CALL);
-    Mockito.when(astMock.getType()).thenReturn(token);
-    methodCounter.visitToken(astMock);
-    
-    assertEquals(2, methodCounter.getNumLocalReferences());
-    assertEquals(1, methodCounter.getNumExternalReferences());*/
-    
   }
   
 //added for deliverable 3 test cases
