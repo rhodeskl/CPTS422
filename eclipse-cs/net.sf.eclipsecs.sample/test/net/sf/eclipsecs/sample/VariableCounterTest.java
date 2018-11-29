@@ -37,6 +37,14 @@ public class VariableCounterTest {
     assertEquals(0, variableCounter.getNumVariables());
   }
   
+  // Add test case for Deliverable 3 to test beginTree()
+  @Test
+  public void testBeginTree() {
+    //when begin is tree is called numVariables should be set to 0
+    variableCounter.beginTree(astMock);
+    assertEquals(0, variableCounter.getNumVariables());
+  }
+  
   @Test
   public void testGetAcceptableTokens() {
     //the acceptable tokens array should only contain one entry referring to the VARIABLE_DEF token type

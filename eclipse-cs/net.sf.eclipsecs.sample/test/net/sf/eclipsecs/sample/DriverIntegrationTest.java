@@ -1604,7 +1604,6 @@ public class DriverIntegrationTest {
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_FOR);
     result = driver.runLoopingStatementCounter(astMock);
     assertEquals(1, result);
-    //System.out.println(result);
  
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.LITERAL_WHILE);
     result = driver.runLoopingStatementCounter(astMock);
