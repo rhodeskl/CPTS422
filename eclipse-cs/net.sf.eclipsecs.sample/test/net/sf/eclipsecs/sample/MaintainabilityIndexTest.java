@@ -59,11 +59,23 @@ public class MaintainabilityIndexTest {
     doReturn(10.0).when(mockHalstead).getHalsteadVolume();
     doReturn(10).when(mockCyclomatic).getCurrentValue();
     doReturn(10).when(mockExecutable).getNumLines();
-    doReturn(10).doReturn(10).when(mockComment).getNumComments();
+    doReturn(10).when(mockComment).getNumComments();
     
     maintainabilityIndex.setMaintainabilityIndex();
     
     assertEquals(142.06734097577464, maintainabilityIndex.getMaintainabilityIndex());
+    
+    
+    //Dividing by 0
+    doReturn(10.0).when(mockHalstead).getHalsteadVolume();
+    doReturn(10).when(mockCyclomatic).getCurrentValue();
+    doReturn(0).when(mockExecutable).getNumLines();
+    doReturn(0).when(mockComment).getNumComments();
+    
+    maintainabilityIndex.setMaintainabilityIndex();
+    
+    assertEquals(Double.POSITIVE_INFINITY, maintainabilityIndex.getMaintainabilityIndex());
+    
   }
   
   @Test
@@ -129,6 +141,14 @@ public class MaintainabilityIndexTest {
         TokenTypes.STATIC_INIT, TokenTypes.SLIST, TokenTypes.BLOCK_COMMENT_BEGIN, TokenTypes.SINGLE_LINE_COMMENT};
     int[] actual = maintainabilityIndex.getDefaultTokens();
     boolean isEqual = Arrays.equals(expected, actual);
+    assertEquals(true, isEqual);
+    
+    when(mockHalstead.getDefaultTokens()).thenReturn(new int[] {});
+    when(mockCyclomatic.getDefaultTokens()).thenReturn(new int[] {});
+    when(mockExecutable.getDefaultTokens()).thenReturn(new int[] {});
+    when(mockComment.getDefaultTokens()).thenReturn(new int[] {});
+    actual = maintainabilityIndex.getDefaultTokens();
+    isEqual = Arrays.equals(new int[] {}, actual);
     assertEquals(true, isEqual);
   }
   
@@ -196,6 +216,14 @@ public class MaintainabilityIndexTest {
     int[] actual = maintainabilityIndex.getAcceptableTokens();
     boolean isEqual = Arrays.equals(expected, actual);
     assertEquals(true, isEqual);
+    
+    when(mockHalstead.getAcceptableTokens()).thenReturn(new int[] {});
+    when(mockCyclomatic.getAcceptableTokens()).thenReturn(new int[] {});
+    when(mockExecutable.getAcceptableTokens()).thenReturn(new int[] {});
+    when(mockComment.getAcceptableTokens()).thenReturn(new int[] {});
+    actual = maintainabilityIndex.getAcceptableTokens();
+    isEqual = Arrays.equals(new int[] {}, actual);
+    assertEquals(true, isEqual);
   }
   
   @Test
@@ -256,6 +284,14 @@ public class MaintainabilityIndexTest {
         TokenTypes.SINGLE_LINE_COMMENT};
     int[] actual = maintainabilityIndex.getRequiredTokens();
     boolean isEqual = Arrays.equals(expected, actual);
+    assertEquals(true, isEqual);
+    
+    when(mockHalstead.getRequiredTokens()).thenReturn(new int[] {});
+    when(mockCyclomatic.getRequiredTokens()).thenReturn(new int[] {});
+    when(mockExecutable.getRequiredTokens()).thenReturn(new int[] {});
+    when(mockComment.getRequiredTokens()).thenReturn(new int[] {});
+    actual = maintainabilityIndex.getRequiredTokens();
+    isEqual = Arrays.equals(new int[] {}, actual);
     assertEquals(true, isEqual);
   }
   
