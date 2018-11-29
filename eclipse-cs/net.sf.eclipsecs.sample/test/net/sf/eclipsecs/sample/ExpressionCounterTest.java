@@ -33,7 +33,7 @@ public class ExpressionCounterTest {
     astMock = PowerMockito.mock(DetailAST.class);
   }
   
-  //Added as part of Deliverable 3 analysis
+  //added as part of Deliverable 3 analysis
   @Test
   public void testBeginTree() {
     //when begin is tree is called, all variable values should be set to 0
