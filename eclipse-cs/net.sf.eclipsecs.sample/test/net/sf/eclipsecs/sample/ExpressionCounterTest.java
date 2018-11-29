@@ -33,6 +33,17 @@ public class ExpressionCounterTest {
     astMock = PowerMockito.mock(DetailAST.class);
   }
   
+  //Added as part of Deliverable 3 analysis
+  @Test
+  public void testBeginTree() {
+    //when begin is tree is called, all variable values should be set to 0
+    expressionCounter.beginTree(astMock);
+    assertEquals(0, expressionCounter.getNumExpressions());
+    assertEquals(0, expressionCounter.getNumOperators());
+    assertEquals(0, expressionCounter.getNumOperands());
+    assertEquals(0, expressionCounter.getNumUniqueOperators());
+    assertEquals(0, expressionCounter.getNumUniqueOperands());
+  }
   @Test
   public void testGetNumExpressions() {
     // getNumExpressions should return the number of expressions
@@ -173,6 +184,7 @@ public class ExpressionCounterTest {
     expressionCounter.visitToken(astMock);
     assertEquals(1, expressionCounter.getNumOperators());
     assertEquals(1, expressionCounter.getNumUniqueOperators());
+   
     
     Mockito.when(astMock.getType()).thenReturn(TokenTypes.ASSIGN);
     expressionCounter.visitToken(astMock);
