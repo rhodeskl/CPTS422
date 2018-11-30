@@ -830,7 +830,7 @@ public class DriverIntegrationTest {
     // if the driver passes a DetailAST that is type operator to the run expression function, then numOperators should increment and numUniqueOperators should not increment
     isNotAcceptableToken = false;
     
-    // This loop will generate a random token that is not an expression, operation, or operand
+    // This loop will generate a random token that is an operator
     while(isNotAcceptableToken == false) {
       token = random.nextInt(TokenTypes.WILDCARD_TYPE);
       if(token == TokenTypes.ABSTRACT || token == TokenTypes.ASSIGN || token == TokenTypes.BAND 

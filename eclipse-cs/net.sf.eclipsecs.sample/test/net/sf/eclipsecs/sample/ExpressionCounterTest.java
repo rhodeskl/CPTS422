@@ -805,6 +805,7 @@ public class ExpressionCounterTest {
     Mockito.when(astMock.getType()).thenReturn(token);
     expressionCounter.visitToken(astMock);
     assertEquals(98, expressionCounter.getNumUniqueOperators());
+    assertEquals(99,expressionCounter.getNumOperators());
     
     // visit token should not increment numUniqueOperands
     token = random.nextInt(5);
@@ -832,6 +833,7 @@ public class ExpressionCounterTest {
     Mockito.when(astMock.getText()).thenReturn(element);
     expressionCounter.visitToken(astMock);
     assertEquals(6, expressionCounter.getNumUniqueOperands());
+    assertEquals(7, expressionCounter.getNumOperands());
   }
 }
 
